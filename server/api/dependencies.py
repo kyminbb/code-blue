@@ -10,6 +10,7 @@ from server.core.config import Settings
 from server.models import Base
 from server.repositories.fcm_repository import FCMRepository
 from server.repositories.visitors_repository import VisitorsRepository
+from server.services.emergency_service import EmergencyService
 from server.services.visitors_service import VisitorsService
 
 
@@ -41,9 +42,16 @@ def get_visitors_repository(session: AsyncSession = Depends(get_session)) -> Vis
     return VisitorsRepository(session)
 
 
-def get_fcm_repository() -> FCMRepository:
-    return FCMRepository()
+def get_fcm_repository(settings: Settings = Depends(get_settings)) -> FCMRepository:
+    return FCMRepository(settings)
 
 
 def get_visitors_service(visitors_repository: VisitorsRepository = Depends(get_visitors_repository)) -> VisitorsService:
     return VisitorsService(visitors_repository)
+
+
+def get_emergency_service(
+    visitors_repository: VisitorsRepository = Depends(get_visitors_repository),
+    fcm_repository: FCMRepository = Depends(get_fcm_repository)
+) -> EmergencyService:
+    return EmergencyService(visitors_repository, fcm_repository)
