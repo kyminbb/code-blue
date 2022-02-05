@@ -5,15 +5,19 @@ services:
       - "5432:5432"
     env_file:
       - .env
+    healthcheck:
+      test: bash -c "pg_isready -U $POSTGRES_USER -d $POSTGRES_DB"
+      interval: 5s
+      timeout: 10s
+      retries: 10
   app:
     image: code-blue
     build: .
-    command: bash -c "alembic revision --autogenerate && alembic upgrade head && uvicorn main:app --host 0.0.0.0 --port 80"
+    command: bash -c "alembic upgrade head && uvicorn main:app --host 0.0.0.0 --port 80"
     environment:
       - PYTHONPATH=/app
-    volumes:
-      - .:/server
     ports:
       - "8000:80"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
