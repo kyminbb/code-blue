@@ -33,8 +33,16 @@ struct ContentView: View {
         .environmentObject(navi)
         .environmentObject(visitorVM)
         .onAppear() {
-            visitorVM.fetchRegisterInfo { result in
-                navi.isRegistered = result
+            visitorVM.fetchRegisterInfo { resp in
+                if let resp = resp {
+                    visitorVM.userName = resp["name"] as? String ?? ""
+                    visitorVM.seatCode = resp["seat"] as? String ?? ""
+                    visitorVM.sectionCode = resp["section"] as? String ?? ""
+                    navi.isRegistered = true
+                }
+                else {
+                    navi.isRegistered = false
+                }
                 navi.phase = .VISITOR
             }
         }

@@ -45,19 +45,20 @@ class VisitorViewModel: ObservableObject {
         }
     }
     
-    func fetchRegisterInfo(completion: @escaping (Bool) -> Void) {
-        if let visitorId = UserDefaults.standard.value(forKey: "visitorId") {
+    func fetchRegisterInfo(completion: @escaping ([String: Any]?) -> Void) {
+        if let visitorId = UserDefaults.standard.value(forKey: "visitorId") as? Int {
             getVisitor(visitorId: visitorId) { resp in
                 if let resp = resp {
-                    completion(true)
+                    completion(resp)
                 }
                 else {
-                    completion(false)
+                    UserDefaults.standard.removeObject(forKey: "visitorId")
+                    completion(nil)
                 }
             }
         }
         else {
-            completion(false)
+            completion(nil)
         }
     }
 }

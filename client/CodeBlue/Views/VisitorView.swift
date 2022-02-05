@@ -11,6 +11,8 @@ struct RegisterView: View {
     @EnvironmentObject var visitorVM: VisitorViewModel
     @EnvironmentObject var navi: Navigation
     
+    @State var showAlert: Bool = false
+    
     var nameField: some View {
         HStack {
             Text("Name: ")
@@ -88,7 +90,11 @@ struct RegisterView: View {
                 if result {
                     navi.isRegistered = true
                 } else {
-                    print("Register Failed")
+                    visitorVM.userName = ""
+                    visitorVM.seatCode = ""
+                    visitorVM.sectionCode = ""
+                    visitorVM.isSupport = false
+                    showAlert = true
                 }
             }
         }, label: {
@@ -103,6 +109,9 @@ struct RegisterView: View {
                 RoundedRectangle(cornerRadius: 10)
             )
         })
+        .alert(isPresented: $showAlert) {
+            Alert(title: Text("Register Failed"), message: Text("Please try again"), dismissButton: .default(Text("OK")))
+        }
     }
     
     var body: some View {
