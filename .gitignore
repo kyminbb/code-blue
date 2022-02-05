@@ -14,3 +14,13 @@
 # IntelliJ IDEA
 **/.idea/
 *.iml
+
+# Alembic
+**/alembic/
+*alembic.ini
+
+# Env files
+*.env
+
+# JSON files
+*.json
