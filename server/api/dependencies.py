@@ -1,6 +1,7 @@
 from functools import lru_cache
 
 from server.core.config import Settings
+from server.services.emergency_service import EmergencyService
 from server.services.visitors_service import VisitorsService
 
 
@@ -11,3 +12,7 @@ def get_settings() -> Settings:
 
 def get_visitors_service() -> VisitorsService:
     return VisitorsService()
+
+
+def get_emergency_service() -> EmergencyService:
+    return EmergencyService()
