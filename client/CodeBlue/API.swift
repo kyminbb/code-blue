@@ -50,3 +50,9 @@ func getVisitor(visitorId: Int, completion: @escaping ([String: Any]?) -> Void) 
         completion(resp)
     }
 }
+
+func sendEmergency(visitorId: Int, completion: @escaping ([String: Any]?) -> Void) {
+    request(route: "/api/visitors/\(visitorId)", method: .get, params: nil) { resp in
+        completion(resp)
+    }
+}

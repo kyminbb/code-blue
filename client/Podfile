@@ -23,5 +23,5 @@ target 'CodeBlue WatchKit Extension' do
   use_frameworks!
 
   # Pods for CodeBlue WatchKit Extension
-
+  pod 'Alamofire'
 end

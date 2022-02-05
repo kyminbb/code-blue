@@ -73,5 +73,6 @@ extension ExtensionDelegate: WCSessionDelegate {
     
     func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
         print("Mesg received \(message)")
+        EmergencyView.visitorId = message["visitorId"] as? Int ?? -1
     }
 }

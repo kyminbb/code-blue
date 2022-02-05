@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0AFA96A4047C925294905E15 /* Pods_CodeBlue_WatchKit_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06A0BDF073AD0D3752D806EE /* Pods_CodeBlue_WatchKit_Extension.framework */; };
+		610B205127AEFCC9000AA7C2 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618AA8F727AE296900340761 /* API.swift */; };
+		610B205427AEFEC3000AA7C2 /* EmergencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610B205327AEFEC3000AA7C2 /* EmergencyView.swift */; };
+		610B205527AEFF3B000AA7C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 618AA8B327AE099700340761 /* Assets.xcassets */; };
 		618AA8AE27AE098A00340761 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618AA8AD27AE098A00340761 /* AppDelegate.swift */; };
 		618AA8B027AE098A00340761 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618AA8AF27AE098A00340761 /* SceneDelegate.swift */; };
 		618AA8B227AE098A00340761 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618AA8B127AE098A00340761 /* ContentView.swift */; };
@@ -82,6 +85,7 @@
 		06A0BDF073AD0D3752D806EE /* Pods_CodeBlue_WatchKit_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CodeBlue_WatchKit_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F83D2BE055BF94624613928 /* Pods-CodeBlue.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CodeBlue.release.xcconfig"; path = "Target Support Files/Pods-CodeBlue/Pods-CodeBlue.release.xcconfig"; sourceTree = "<group>"; };
 		471AB9C8E29DB706B34626CF /* Pods-CodeBlue WatchKit App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CodeBlue WatchKit App.release.xcconfig"; path = "Target Support Files/Pods-CodeBlue WatchKit App/Pods-CodeBlue WatchKit App.release.xcconfig"; sourceTree = "<group>"; };
+		610B205327AEFEC3000AA7C2 /* EmergencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyView.swift; sourceTree = "<group>"; };
 		618AA8AA27AE098A00340761 /* CodeBlue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CodeBlue.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		618AA8AD27AE098A00340761 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		618AA8AF27AE098A00340761 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -171,6 +175,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		610B205227AEFEB6000AA7C2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				610B205327AEFEC3000AA7C2 /* EmergencyView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		618AA8A127AE098A00340761 = {
 			isa = PBXGroup;
 			children = (
@@ -234,6 +246,7 @@
 		618AA8D127AE099800340761 /* CodeBlue WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				610B205227AEFEB6000AA7C2 /* Views */,
 				618AA8D227AE099800340761 /* HostingController.swift */,
 				618AA8D427AE099800340761 /* ContentView.swift */,
 				618AA8D627AE099800340761 /* ExtensionDelegate.swift */,
@@ -301,8 +314,6 @@
 				618AA8C127AE099700340761 /* PBXTargetDependency */,
 			);
 			name = CodeBlue;
-			packageProductDependencies = (
-			);
 			productName = CodeBlue;
 			productReference = 618AA8AA27AE098A00340761 /* CodeBlue.app */;
 			productType = "com.apple.product-type.application";
@@ -334,6 +345,7 @@
 				618AA8C927AE099800340761 /* Sources */,
 				618AA8CA27AE099800340761 /* Frameworks */,
 				618AA8CB27AE099800340761 /* Resources */,
+				9A4AF7ED24C1606F8378E191 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -373,8 +385,6 @@
 				Base,
 			);
 			mainGroup = 618AA8A127AE098A00340761;
-			packageReferences = (
-			);
 			productRefGroup = 618AA8AB27AE098A00340761 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -412,6 +422,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				618AA8E227AE099900340761 /* Preview Assets.xcassets in Resources */,
+				610B205527AEFF3B000AA7C2 /* Assets.xcassets in Resources */,
 				618AA8DF27AE099900340761 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -480,6 +491,23 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		9A4AF7ED24C1606F8378E191 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CodeBlue WatchKit Extension/Pods-CodeBlue WatchKit Extension-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CodeBlue WatchKit Extension/Pods-CodeBlue WatchKit Extension-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CodeBlue WatchKit Extension/Pods-CodeBlue WatchKit Extension-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		F252710E9B97717E067F2329 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -524,12 +552,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				610B205427AEFEC3000AA7C2 /* EmergencyView.swift in Sources */,
 				618AA8D527AE099800340761 /* ContentView.swift in Sources */,
 				618AA8D327AE099800340761 /* HostingController.swift in Sources */,
 				618AA8D927AE099800340761 /* NotificationController.swift in Sources */,
 				618AA8D727AE099800340761 /* ExtensionDelegate.swift in Sources */,
 				618AA8DB27AE099800340761 /* NotificationView.swift in Sources */,
 				618AA8DD27AE099800340761 /* ComplicationController.swift in Sources */,
+				610B205127AEFCC9000AA7C2 /* API.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

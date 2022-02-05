@@ -23,20 +23,16 @@ class VisitorViewModel: ObservableObject {
                 print("token: \(token)")
             }
         }
-        do {
-            WCSession.default.sendMessage(["My": "asd"], replyHandler: nil, errorHandler: {error in
-                print("Watch error \(error)")
-            })
-            WCSession.default.transferUserInfo(["msg": "id"])
-            try WCSession.default.updateApplicationContext((["name": userName]))
-        }
-        catch  {
+        WCSession.default.sendMessage(["visitorId": 100], replyHandler: nil, errorHandler: { error in
             print("Watch error \(error)")
-        }
+        })
         register(name: userName, seat: seatCode, section: sectionCode, consent: isSupport) { resp in
             if let resp = resp {
                 if let visitorId = resp["visitor_id"] as? Int {
                     UserDefaults.standard.setValue(visitorId, forKey: "visitorId")
+                    WCSession.default.sendMessage(["visitorId": visitorId], replyHandler: nil, errorHandler: { error in
+                        print("Watch error \(error)")
+                    })
                     completion(true)
                 }
                 else {
