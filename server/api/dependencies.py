@@ -2,7 +2,6 @@ from functools import lru_cache
 from typing import AsyncGenerator
 
 from fastapi import Depends
-from sqlalchemy.ext.asyncio import AsyncEngine
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.ext.asyncio import create_async_engine
 from sqlalchemy.orm import sessionmaker
@@ -17,14 +16,15 @@ def get_settings() -> Settings:
     return Settings()
 
 
-@lru_cache()
-def _get_reusable_engine() -> AsyncEngine:
-    return create_async_engine(get_settings().DB_URL, echo=True)
+engine = create_async_engine(get_settings().DB_URL)
+
+
+async def close_db() -> None:
+    await engine.dispose()
 
 
 @lru_cache()
 def _get_reusable_session_maker() -> sessionmaker:
-    engine = _get_reusable_engine()
     return sessionmaker(engine, class_=AsyncSession, expire_on_commit=False)
 
 

@@ -1,16 +1,17 @@
 import os
+import sys
 from typing import List
 
+from dotenv import load_dotenv
 from pydantic import BaseSettings
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+load_dotenv(os.path.join(BASE_DIR, ".env"))
+sys.path.append(BASE_DIR)
 
 
 class Settings(BaseSettings):
     APP_NAME: str = "code-blue"
     ALLOW_ORIGINS: List[str] = ["*"]
 
-    DB_USER: str = os.getenv("DB_USER", "fabregas")
-    DB_PASSWORD: str = os.getenv("DB_PASSWORD", "vanpersie")
-    DB_HOST: str = "localhost"
-    DB_PORT: int = 5432
-    DB_NAME: str = "code_blue"
-    DB_URL: str = f"postgresql+asyncpg://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+    DB_URL: str = os.getenv("DB_URL")

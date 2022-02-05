@@ -21,7 +21,7 @@ class VisitorsService:
         return RegisterResponse(visitor_id=visitor_id)
 
     async def get_visitor(self, visitor_id: int) -> Optional[Visitor]:
-        visitor = await self.visitors_repository.get_isitor(visitor_id)
+        visitor = await self.visitors_repository.get_visitor(visitor_id)
         if not visitor:
             return None
         section_seat = visitor.section_seat.split("_")

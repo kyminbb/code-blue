@@ -3,8 +3,8 @@ from typing import Callable
 
 from fastapi import FastAPI
 
-from server.api.dependencies import _get_reusable_engine
 from server.api.dependencies import _get_reusable_session_maker
+from server.api.dependencies import close_db
 
 
 def create_start_app_handler(app: FastAPI) -> Callable[..., Any]:
@@ -16,7 +16,6 @@ def create_start_app_handler(app: FastAPI) -> Callable[..., Any]:
 
 def create_shutdown_app_handler(app: FastAPI) -> Callable[..., Any]:
     async def shutdown_app() -> None:
-        engine = _get_reusable_engine()
-        await engine.dispose()
+        await close_db()
 
     return shutdown_app
