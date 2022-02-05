@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -149,7 +149,6 @@
 				77B0B5F251750F21C7F4E1E5 /* Pods-CodeBlue WatchKit Extension.debug.xcconfig */,
 				14CF845EED706EE2FE191A2D /* Pods-CodeBlue WatchKit Extension.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -184,11 +183,11 @@
 				618AA8AD27AE098A00340761 /* AppDelegate.swift */,
 				618AA8AF27AE098A00340761 /* SceneDelegate.swift */,
 				618AA8B127AE098A00340761 /* ContentView.swift */,
+				618AA8F727AE296900340761 /* API.swift */,
 				618AA8B327AE099700340761 /* Assets.xcassets */,
 				618AA8B827AE099700340761 /* LaunchScreen.storyboard */,
 				618AA8BB27AE099700340761 /* Info.plist */,
 				618AA8B527AE099700340761 /* Preview Content */,
-				618AA8F727AE296900340761 /* API.swift */,
 			);
 			path = CodeBlue;
 			sourceTree = "<group>";

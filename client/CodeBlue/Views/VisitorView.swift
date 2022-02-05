@@ -17,6 +17,7 @@ struct VisitorView: View {
         HStack {
             Text("Name: ")
                 .font(.system(size: 20))
+                .fixedSize()
             Spacer()
             TextField("Enter your name", text: $userName)
                 .frame(width: 230)
@@ -29,6 +30,7 @@ struct VisitorView: View {
     var seatField: some View {
         HStack {
             Text("Seat: ")
+                .fixedSize()
                 .font(.system(size: 20))
             Spacer()
             TextField("Enter your seat", text: $seatCode)
@@ -42,6 +44,7 @@ struct VisitorView: View {
     var sectionField: some View {
         HStack {
             Text("Section: ")
+                .fixedSize()
                 .font(.system(size: 20))
             Spacer()
             TextField("Enter your section", text: $sectionCode)
