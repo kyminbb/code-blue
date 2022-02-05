@@ -20,3 +20,5 @@ class Settings(BaseSettings):
     DB_PORT: int = int(os.getenv("POSTGRES_PORT"))
     DB_NAME: str = os.getenv("POSTGRES_DB")
     DB_URL: str = f"postgresql+asyncpg://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
+
+    FIREBASE_CREDENTIALS: str = os.getenv("FIREBASE_CREDENTIALS")

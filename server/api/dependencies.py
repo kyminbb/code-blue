@@ -8,6 +8,7 @@ from sqlalchemy.orm import sessionmaker
 
 from server.core.config import Settings
 from server.models import Base
+from server.repositories.fcm_repository import FCMRepository
 from server.repositories.visitors_repository import VisitorsRepository
 from server.services.visitors_service import VisitorsService
 
@@ -38,6 +39,10 @@ async def get_session() -> AsyncSession:
 
 def get_visitors_repository(session: AsyncSession = Depends(get_session)) -> VisitorsRepository:
     return VisitorsRepository(session)
+
+
+def get_fcm_repository() -> FCMRepository:
+    return FCMRepository()
 
 
 def get_visitors_service(visitors_repository: VisitorsRepository = Depends(get_visitors_repository)) -> VisitorsService:
