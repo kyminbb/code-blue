@@ -2,15 +2,41 @@
 //  ContentView.swift
 //  CodeBlue
 //
-//  Created by Elcy on 2022/02/05.
+//  Created by SeBeom on 2022/02/05.
 //
 
 import SwiftUI
 
+
 struct ContentView: View {
+    @ObservedObject var visitorVM: VisitorViewModel = VisitorViewModel()
+    @ObservedObject var navi: Navigation = Navigation()
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        ZStack {
+            switch navi.phase {
+            case .LOADING:
+                ProgressView()
+                    .scaleEffect(3)
+            case .VISITOR:
+                VisitorView()
+            case .ENROUTE:
+                VStack(spacing: 20) {
+                    Image("logo")
+                    Text("Support is en route!!")
+                        .font(.system(size: 30))
+                }
+            case .SUPPORT:
+                SupportView()
+            }
+        }
+        .environmentObject(navi)
+        .environmentObject(visitorVM)
+        .onAppear() {
+            getVisitor(visitorId: 1) { resp in
+                navi.phase = .VISITOR
+            }
+        }
     }
 }
 

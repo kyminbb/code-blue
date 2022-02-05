@@ -2,12 +2,22 @@
 //  ExtensionDelegate.swift
 //  CodeBlue WatchKit Extension
 //
-//  Created by Elcy on 2022/02/05.
+//  Created by SeBeom on 2022/02/05.
 //
 
 import WatchKit
+import WatchConnectivity
 
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
+    
+    override init() {
+        super.init()
+        if(WCSession.isSupported()) {
+            print("Watch Supported")
+            WCSession.default.delegate = self
+            WCSession.default.activate()
+        }
+    }
 
     func applicationDidFinishLaunching() {
         // Perform any final initialization of your application.
@@ -52,4 +62,10 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         }
     }
 
+}
+
+extension ExtensionDelegate: WCSessionDelegate {
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        print(session.receivedApplicationContext)
+    }
 }
