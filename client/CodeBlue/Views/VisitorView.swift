@@ -7,11 +7,9 @@
 
 import SwiftUI
 
+
 struct VisitorView: View {
-    @State var userName: String = ""
-    @State var seatCode: String = ""
-    @State var sectionCode: String = ""
-    @State var isSupport: Bool = false
+    @ObservedObject var visitorVM: VisitorViewModel = VisitorViewModel()
 
     var nameField: some View {
         HStack {
@@ -19,7 +17,7 @@ struct VisitorView: View {
                 .font(.system(size: 20))
                 .fixedSize()
             Spacer()
-            TextField("Enter your name", text: $userName)
+            TextField("Enter your name", text: $visitorVM.userName)
                 .frame(width: 230)
                 .font(.system(size: 20))
                 .padding(5)
@@ -33,7 +31,7 @@ struct VisitorView: View {
                 .fixedSize()
                 .font(.system(size: 20))
             Spacer()
-            TextField("Enter your seat", text: $seatCode)
+            TextField("Enter your seat", text: $visitorVM.seatCode)
                 .frame(width: 230)
                 .font(.system(size: 20))
                 .padding(5)
@@ -47,7 +45,7 @@ struct VisitorView: View {
                 .fixedSize()
                 .font(.system(size: 20))
             Spacer()
-            TextField("Enter your section", text: $sectionCode)
+            TextField("Enter your section", text: $visitorVM.sectionCode)
                 .frame(width: 230)
                 .font(.system(size: 20))
                 .padding(5)
@@ -61,9 +59,9 @@ struct VisitorView: View {
                 Text("(Optional) I am capable of providing a medical assistance in emergency situation")
                     .font(.system(size: 20))
                 Button(action: {
-                    isSupport.toggle()
+                    visitorVM.isSupport.toggle()
                 }, label: {
-                    if isSupport {
+                    if visitorVM.isSupport {
                         Image(systemName: "checkmark.square.fill")
                             .resizable()
                             
