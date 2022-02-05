@@ -33,7 +33,8 @@ struct ContentView: View {
         .environmentObject(navi)
         .environmentObject(visitorVM)
         .onAppear() {
-            getVisitor(visitorId: 1) { resp in
+            visitorVM.fetchRegisterInfo { result in
+                navi.isRegistered = result
                 navi.phase = .VISITOR
             }
         }

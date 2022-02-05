@@ -45,7 +45,19 @@ class VisitorViewModel: ObservableObject {
         }
     }
     
-    func fetchRegisterInfo() {
-        
+    func fetchRegisterInfo(completion: @escaping (Bool) -> Void) {
+        if let visitorId = UserDefaults.standard.value(forKey: "visitorId") {
+            getVisitor(visitorId: visitorId) { resp in
+                if let resp = resp {
+                    completion(true)
+                }
+                else {
+                    completion(false)
+                }
+            }
+        }
+        else {
+            completion(false)
+        }
     }
 }
