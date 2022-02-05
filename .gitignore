@@ -21,3 +21,6 @@
 
 # Env files
 *.env
+
+# JSON files
+*.json
