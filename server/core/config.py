@@ -14,5 +14,9 @@ class Settings(BaseSettings):
     APP_NAME: str = "code-blue"
     ALLOW_ORIGINS: List[str] = ["*"]
 
-    DB_URL: str = os.getenv("DB_URL")
-
+    DB_USER: str = os.getenv("POSTGRES_USER")
+    DB_PASSWORD: str = os.getenv("POSTGRES_PASSWORD")
+    DB_HOST: str = os.getenv("POSTGRES_HOST")
+    DB_PORT: int = int(os.getenv("POSTGRES_PORT"))
+    DB_NAME: str = os.getenv("POSTGRES_DB")
+    DB_URL: str = f"postgresql+asyncpg://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
