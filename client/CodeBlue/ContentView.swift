@@ -9,11 +9,27 @@ import SwiftUI
 
 
 struct ContentView: View {
+    enum Phase {
+        case LOADING
+        case REGISTER
+        case ENROUTE
+        case SUPPORT
+    }
+    
+    @State var currentPhase: Phase = .REGISTER
+    
     var body: some View {
-        VisitorView()
-            .onAppear() {
-                helloWorld()
-            }
+        switch currentPhase {
+        case .LOADING:
+            ProgressView()
+                .scaleEffect(3)
+        case .REGISTER:
+            VisitorView()
+        case .ENROUTE:
+            Rectangle()
+        case .SUPPORT:
+            Rectangle()
+        }
     }
 }
 

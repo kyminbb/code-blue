@@ -84,7 +84,8 @@ struct VisitorView: View {
     
     var submitButton: some View {
         Button(action: {
-            
+            visitorVM.submit()
+            getVisitor(visitorId: 3)
         }, label: {
             ZStack {
                 Text("Submit")

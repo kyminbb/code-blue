@@ -15,5 +15,10 @@ class VisitorViewModel: ObservableObject {
     @Published var sectionCode: String = ""
     @Published var isSupport: Bool = false
     
-    
+    func submit() {
+        register(name: userName, seat: seatCode, section: sectionCode, consent: isSupport) {
+            
+        }
+        UserDefaults.standard.setValue(3, forKey: "visitorId")
+    }
 }

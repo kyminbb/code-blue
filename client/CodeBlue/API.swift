@@ -32,8 +32,21 @@ func request(route: String, method: HTTPMethod, params: [String: Any]?, completi
         }
 }
 
-func helloWorld() {
-    request(route: "/", method: .get, params: nil) { resp in
+func register(name: String, seat: String, section: String, consent: Bool, completion: @escaping () -> Void) {
+    let params: [String: Any] = [
+        "name": name,
+        "seat": seat,
+        "section": section,
+        "consent": consent
+    ]
+    
+    request(route: "/api/visitors/register", method: .put, params: params) { resp in
+        print(resp)
+    }
+}
+
+func getVisitor(visitorId: Int) {
+    request(route: "/api/visitors/\(visitorId)", method: .get, params: nil) { resp in
         print(resp)
     }
 }
