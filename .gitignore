@@ -1,0 +1,16 @@
+# Byte-compiled / optimized / DLL files
+*.pyc
+**/__pycache__/
+
+# virtualenv
+**/venv/
+
+# OS X files
+*.DS_Store
+
+# Visual Studio code
+*.vscode
+
+# IntelliJ IDEA
+**/.idea/
+*.iml
