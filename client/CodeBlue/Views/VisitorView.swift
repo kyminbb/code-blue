@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-
-struct VisitorView: View {
-    @ObservedObject var visitorVM: VisitorViewModel = VisitorViewModel()
-
+struct RegisterView: View {
+    @EnvironmentObject var visitorVM: VisitorViewModel
+    @EnvironmentObject var navi: Navigation
+    
     var nameField: some View {
         HStack {
             Text("Name: ")
@@ -84,8 +84,13 @@ struct VisitorView: View {
     
     var submitButton: some View {
         Button(action: {
-            visitorVM.submit()
-            getVisitor(visitorId: 3)
+            visitorVM.submit() { result in
+                if result {
+                    navi.isRegistered = true
+                } else {
+                    print("Register Failed")
+                }
+            }
         }, label: {
             ZStack {
                 Text("Submit")
@@ -114,6 +119,44 @@ struct VisitorView: View {
             .padding(.horizontal, 50)
             
             submitButton
+        }
+    }
+}
+
+
+struct VisitorView: View {
+    @EnvironmentObject var visitorVM: VisitorViewModel
+    @EnvironmentObject var navi: Navigation
+    
+    var body: some View {
+        if !navi.isRegistered {
+            RegisterView()
+                .environmentObject(visitorVM)
+        }
+        else {
+            VStack(spacing: 20) {
+                Image("logo")
+                
+                Text("You are registered")
+                    .fixedSize()
+                    .font(.system(size: 20))
+                    .foregroundColor(.blue)
+                
+                VStack(spacing: 7) {
+                    Text("Name: \(visitorVM.userName)")
+                        .fixedSize()
+                        .font(.system(size: 17))
+                    Text("Seat: \(visitorVM.seatCode)")
+                        .fixedSize()
+                        .font(.system(size: 17))
+                    Text("Section: \(visitorVM.sectionCode)")
+                        .fixedSize()
+                        .font(.system(size: 17))
+    //                Text("Name: \(visitorVM.userName)")
+    //                    .fixedSize()
+    //                    .font(.system(size: 20))
+                }
+            }
         }
     }
 }

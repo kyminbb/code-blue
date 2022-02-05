@@ -32,7 +32,7 @@ func request(route: String, method: HTTPMethod, params: [String: Any]?, completi
         }
 }
 
-func register(name: String, seat: String, section: String, consent: Bool, completion: @escaping () -> Void) {
+func register(name: String, seat: String, section: String, consent: Bool, completion: @escaping ([String: Any]?) -> Void) {
     let params: [String: Any] = [
         "name": name,
         "seat": seat,
@@ -41,12 +41,12 @@ func register(name: String, seat: String, section: String, consent: Bool, comple
     ]
     
     request(route: "/api/visitors/register", method: .put, params: params) { resp in
-        print(resp)
+        completion(resp)
     }
 }
 
-func getVisitor(visitorId: Int) {
+func getVisitor(visitorId: Int, completion: @escaping ([String: Any]?) -> Void) {
     request(route: "/api/visitors/\(visitorId)", method: .get, params: nil) { resp in
-        print(resp)
+        completion(resp)
     }
 }

@@ -29,6 +29,7 @@
 		618AA8F627AE292500340761 /* VisitorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618AA8F527AE292500340761 /* VisitorView.swift */; };
 		618AA8F827AE296900340761 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618AA8F727AE296900340761 /* API.swift */; };
 		618AA8FA27AE32B100340761 /* VisitorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618AA8F927AE32B100340761 /* VisitorViewModel.swift */; };
+		618AA8FC27AE485400340761 /* Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618AA8FB27AE485400340761 /* Navigation.swift */; };
 		C7DE2A8CE071F45876FE2212 /* Pods_CodeBlue_WatchKit_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6E63BA6BC5F44AB435D735B /* Pods_CodeBlue_WatchKit_App.framework */; };
 		D5E8DE3BC5DA44A23092902A /* Pods_CodeBlue.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FFE5C6721C026807576607 /* Pods_CodeBlue.framework */; };
 /* End PBXBuildFile section */
@@ -105,6 +106,7 @@
 		618AA8F527AE292500340761 /* VisitorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitorView.swift; sourceTree = "<group>"; };
 		618AA8F727AE296900340761 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		618AA8F927AE32B100340761 /* VisitorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitorViewModel.swift; sourceTree = "<group>"; };
+		618AA8FB27AE485400340761 /* Navigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigation.swift; sourceTree = "<group>"; };
 		77B0B5F251750F21C7F4E1E5 /* Pods-CodeBlue WatchKit Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CodeBlue WatchKit Extension.debug.xcconfig"; path = "Target Support Files/Pods-CodeBlue WatchKit Extension/Pods-CodeBlue WatchKit Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		7D7D8A6271FD410F87D6E5CF /* Pods_CodeBlue_WatchKit_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CodeBlue_WatchKit_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A0B73C213EA73E79C18058C /* Pods-CodeBlue.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CodeBlue.debug.xcconfig"; path = "Target Support Files/Pods-CodeBlue/Pods-CodeBlue.debug.xcconfig"; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				618AA8F927AE32B100340761 /* VisitorViewModel.swift */,
+				618AA8FB27AE485400340761 /* Navigation.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -495,6 +498,7 @@
 			files = (
 				618AA8AE27AE098A00340761 /* AppDelegate.swift in Sources */,
 				618AA8B027AE098A00340761 /* SceneDelegate.swift in Sources */,
+				618AA8FC27AE485400340761 /* Navigation.swift in Sources */,
 				618AA8B227AE098A00340761 /* ContentView.swift in Sources */,
 				618AA8F627AE292500340761 /* VisitorView.swift in Sources */,
 				618AA8F827AE296900340761 /* API.swift in Sources */,

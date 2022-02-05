@@ -9,26 +9,29 @@ import SwiftUI
 
 
 struct ContentView: View {
-    enum Phase {
-        case LOADING
-        case REGISTER
-        case ENROUTE
-        case SUPPORT
-    }
-    
-    @State var currentPhase: Phase = .REGISTER
+    @ObservedObject var visitorVM: VisitorViewModel = VisitorViewModel()
+    @ObservedObject var navi: Navigation = Navigation()
     
     var body: some View {
-        switch currentPhase {
-        case .LOADING:
-            ProgressView()
-                .scaleEffect(3)
-        case .REGISTER:
-            VisitorView()
-        case .ENROUTE:
-            Rectangle()
-        case .SUPPORT:
-            Rectangle()
+        ZStack {
+            switch navi.phase {
+            case .LOADING:
+                ProgressView()
+                    .scaleEffect(3)
+            case .VISITOR:
+                VisitorView()
+            case .ENROUTE:
+                Rectangle()
+            case .SUPPORT:
+                Rectangle()
+            }
+        }
+        .environmentObject(navi)
+        .environmentObject(visitorVM)
+        .onAppear() {
+            getVisitor(visitorId: 1) { resp in
+                navi.phase = .VISITOR
+            }
         }
     }
 }
