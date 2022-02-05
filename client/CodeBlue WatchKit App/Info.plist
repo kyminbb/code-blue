@@ -26,7 +26,7 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>WKCompanionAppBundleIdentifier</key>
-	<string>com.4rsenal.CodeBlue</string>
+	<string>com.moses97.CodeBlue</string>
 	<key>WKWatchKitApp</key>
 	<true/>
 </dict>

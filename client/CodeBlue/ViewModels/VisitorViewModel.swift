@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import FirebaseMessaging
 
 
 class VisitorViewModel: ObservableObject {
@@ -16,6 +17,11 @@ class VisitorViewModel: ObservableObject {
     @Published var isSupport: Bool = false
     
     func submit(completion: @escaping (Bool) -> Void) {
+        Messaging.messaging().token { token, error in
+            if let token = token {
+                print("token: \(token)")
+            }
+        }
         register(name: userName, seat: seatCode, section: sectionCode, consent: isSupport) { resp in
             if let resp = resp {
                 if let visitorId = resp["visitor_id"] as? Int {

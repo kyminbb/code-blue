@@ -7,6 +7,7 @@ target 'CodeBlue' do
 
   # Pods for CodeBlue
   pod 'Alamofire'
+  pod 'Firebase/Messaging'
 end
 
 target 'CodeBlue WatchKit App' do
