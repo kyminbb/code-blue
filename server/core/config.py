@@ -15,3 +15,4 @@ class Settings(BaseSettings):
     ALLOW_ORIGINS: List[str] = ["*"]
 
     DB_URL: str = os.getenv("DB_URL")
+

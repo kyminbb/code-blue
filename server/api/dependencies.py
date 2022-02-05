@@ -38,3 +38,4 @@ def get_visitors_repository(session_maker: sessionmaker = Depends(get_session_ma
 
 def get_visitors_service(visitors_repository: VisitorsRepository = Depends(get_visitors_repository)) -> VisitorsService:
     return VisitorsService(visitors_repository)
+
