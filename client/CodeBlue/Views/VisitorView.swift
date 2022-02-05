@@ -137,7 +137,7 @@ struct VisitorView: View {
             VStack(spacing: 20) {
                 Image("logo")
                 
-                Text("You are registered")
+                Text("You are registered as")
                     .fixedSize()
                     .font(.system(size: 20))
                     .foregroundColor(.blue)
@@ -152,9 +152,6 @@ struct VisitorView: View {
                     Text("Section: \(visitorVM.sectionCode)")
                         .fixedSize()
                         .font(.system(size: 17))
-    //                Text("Name: \(visitorVM.userName)")
-    //                    .fixedSize()
-    //                    .font(.system(size: 20))
                 }
             }
         }

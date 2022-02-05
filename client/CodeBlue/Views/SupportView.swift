@@ -9,7 +9,13 @@ import SwiftUI
 
 struct SupportView: View {
     var body: some View {
-        Text("Support View")
+        VStack(spacing: 20) {
+            Image("logo")
+            Image("stadium")
+                .resizable()
+                .frame(width: 250, height: 250)
+            Text("Emergency occured at E5")
+        }
     }
 }
 

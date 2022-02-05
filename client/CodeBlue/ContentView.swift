@@ -23,7 +23,7 @@ struct ContentView: View {
             case .ENROUTE:
                 VStack(spacing: 20) {
                     Image("logo")
-                    Text("Support is en route!!")
+                    Text("Help is on the way!!")
                         .font(.system(size: 30))
                 }
             case .SUPPORT:

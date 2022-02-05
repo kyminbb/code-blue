@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import FirebaseMessaging
+import WatchConnectivity
 
 
 class VisitorViewModel: ObservableObject {
@@ -21,6 +22,16 @@ class VisitorViewModel: ObservableObject {
             if let token = token {
                 print("token: \(token)")
             }
+        }
+        do {
+            WCSession.default.sendMessage(["My": "asd"], replyHandler: nil, errorHandler: {error in
+                print("Watch error \(error)")
+            })
+            WCSession.default.transferUserInfo(["msg": "id"])
+            try WCSession.default.updateApplicationContext((["name": userName]))
+        }
+        catch  {
+            print("Watch error \(error)")
         }
         register(name: userName, seat: seatCode, section: sectionCode, consent: isSupport) { resp in
             if let resp = resp {

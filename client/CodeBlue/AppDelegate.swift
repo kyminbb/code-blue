@@ -33,7 +33,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         Messaging.messaging().isAutoInitEnabled = true
         
         if(WCSession.isSupported()) {
-            print("WatchKit supported")
             WCSession.default.delegate = self
             WCSession.default.activate()
         }
@@ -72,7 +71,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
 extension AppDelegate: WCSessionDelegate {
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        try! session.updateApplicationContext(["hello": "WOrld"])
     }
     
     func sessionDidBecomeInactive(_ session: WCSession) {
