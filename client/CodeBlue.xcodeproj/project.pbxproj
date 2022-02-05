@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		488A58C764019D45892096C0 /* Pods_CodeBlue_WatchKit_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D7D8A6271FD410F87D6E5CF /* Pods_CodeBlue_WatchKit_Extension.framework */; };
 		618AA8AE27AE098A00340761 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618AA8AD27AE098A00340761 /* AppDelegate.swift */; };
 		618AA8B027AE098A00340761 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618AA8AF27AE098A00340761 /* SceneDelegate.swift */; };
 		618AA8B227AE098A00340761 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618AA8B127AE098A00340761 /* ContentView.swift */; };
@@ -25,6 +26,10 @@
 		618AA8DD27AE099800340761 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618AA8DC27AE099800340761 /* ComplicationController.swift */; };
 		618AA8DF27AE099900340761 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 618AA8DE27AE099900340761 /* Assets.xcassets */; };
 		618AA8E227AE099900340761 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 618AA8E127AE099900340761 /* Preview Assets.xcassets */; };
+		618AA8F627AE292500340761 /* VisitorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618AA8F527AE292500340761 /* VisitorView.swift */; };
+		618AA8F827AE296900340761 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618AA8F727AE296900340761 /* API.swift */; };
+		C7DE2A8CE071F45876FE2212 /* Pods_CodeBlue_WatchKit_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6E63BA6BC5F44AB435D735B /* Pods_CodeBlue_WatchKit_App.framework */; };
+		D5E8DE3BC5DA44A23092902A /* Pods_CodeBlue.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FFE5C6721C026807576607 /* Pods_CodeBlue.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +75,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		00F11DC6C10D465A4D18CF95 /* Pods-CodeBlue WatchKit App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CodeBlue WatchKit App.debug.xcconfig"; path = "Target Support Files/Pods-CodeBlue WatchKit App/Pods-CodeBlue WatchKit App.debug.xcconfig"; sourceTree = "<group>"; };
+		08FFE5C6721C026807576607 /* Pods_CodeBlue.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CodeBlue.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		14CF845EED706EE2FE191A2D /* Pods-CodeBlue WatchKit Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CodeBlue WatchKit Extension.release.xcconfig"; path = "Target Support Files/Pods-CodeBlue WatchKit Extension/Pods-CodeBlue WatchKit Extension.release.xcconfig"; sourceTree = "<group>"; };
 		618AA8AA27AE098A00340761 /* CodeBlue.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CodeBlue.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		618AA8AD27AE098A00340761 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		618AA8AF27AE098A00340761 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +101,14 @@
 		618AA8E127AE099900340761 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		618AA8E327AE099900340761 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		618AA8E427AE099900340761 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		618AA8F527AE292500340761 /* VisitorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitorView.swift; sourceTree = "<group>"; };
+		618AA8F727AE296900340761 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		77B0B5F251750F21C7F4E1E5 /* Pods-CodeBlue WatchKit Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CodeBlue WatchKit Extension.debug.xcconfig"; path = "Target Support Files/Pods-CodeBlue WatchKit Extension/Pods-CodeBlue WatchKit Extension.debug.xcconfig"; sourceTree = "<group>"; };
+		7D7D8A6271FD410F87D6E5CF /* Pods_CodeBlue_WatchKit_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CodeBlue_WatchKit_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A0B73C213EA73E79C18058C /* Pods-CodeBlue.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CodeBlue.debug.xcconfig"; path = "Target Support Files/Pods-CodeBlue/Pods-CodeBlue.debug.xcconfig"; sourceTree = "<group>"; };
+		B6D643B752670AC57ED96191 /* Pods-CodeBlue WatchKit App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CodeBlue WatchKit App.release.xcconfig"; path = "Target Support Files/Pods-CodeBlue WatchKit App/Pods-CodeBlue WatchKit App.release.xcconfig"; sourceTree = "<group>"; };
+		C6E63BA6BC5F44AB435D735B /* Pods_CodeBlue_WatchKit_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CodeBlue_WatchKit_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1606FEF5A68FA9AC222B6BB /* Pods-CodeBlue.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CodeBlue.release.xcconfig"; path = "Target Support Files/Pods-CodeBlue/Pods-CodeBlue.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5E8DE3BC5DA44A23092902A /* Pods_CodeBlue.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,12 +124,35 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				488A58C764019D45892096C0 /* Pods_CodeBlue_WatchKit_Extension.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F163540F3E2527E2F8A502CD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C7DE2A8CE071F45876FE2212 /* Pods_CodeBlue_WatchKit_App.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		57A35A0DFD8AF88DF4ED3CC4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9A0B73C213EA73E79C18058C /* Pods-CodeBlue.debug.xcconfig */,
+				D1606FEF5A68FA9AC222B6BB /* Pods-CodeBlue.release.xcconfig */,
+				00F11DC6C10D465A4D18CF95 /* Pods-CodeBlue WatchKit App.debug.xcconfig */,
+				B6D643B752670AC57ED96191 /* Pods-CodeBlue WatchKit App.release.xcconfig */,
+				77B0B5F251750F21C7F4E1E5 /* Pods-CodeBlue WatchKit Extension.debug.xcconfig */,
+				14CF845EED706EE2FE191A2D /* Pods-CodeBlue WatchKit Extension.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		618AA8A127AE098A00340761 = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +160,8 @@
 				618AA8C227AE099700340761 /* CodeBlue WatchKit App */,
 				618AA8D127AE099800340761 /* CodeBlue WatchKit Extension */,
 				618AA8AB27AE098A00340761 /* Products */,
+				57A35A0DFD8AF88DF4ED3CC4 /* Pods */,
+				AAD4993995FA2800DBE22B7E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -136,6 +178,9 @@
 		618AA8AC27AE098A00340761 /* CodeBlue */ = {
 			isa = PBXGroup;
 			children = (
+				618AA8F427AE28F300340761 /* Models */,
+				618AA8F327AE28E900340761 /* ViewModels */,
+				618AA8F227AE28D900340761 /* Views */,
 				618AA8AD27AE098A00340761 /* AppDelegate.swift */,
 				618AA8AF27AE098A00340761 /* SceneDelegate.swift */,
 				618AA8B127AE098A00340761 /* ContentView.swift */,
@@ -143,6 +188,7 @@
 				618AA8B827AE099700340761 /* LaunchScreen.storyboard */,
 				618AA8BB27AE099700340761 /* Info.plist */,
 				618AA8B527AE099700340761 /* Preview Content */,
+				618AA8F727AE296900340761 /* API.swift */,
 			);
 			path = CodeBlue;
 			sourceTree = "<group>";
@@ -190,6 +236,38 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		618AA8F227AE28D900340761 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				618AA8F527AE292500340761 /* VisitorView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		618AA8F327AE28E900340761 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		618AA8F427AE28F300340761 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AAD4993995FA2800DBE22B7E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				08FFE5C6721C026807576607 /* Pods_CodeBlue.framework */,
+				C6E63BA6BC5F44AB435D735B /* Pods_CodeBlue_WatchKit_App.framework */,
+				7D7D8A6271FD410F87D6E5CF /* Pods_CodeBlue_WatchKit_Extension.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -197,10 +275,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 618AA8EF27AE099900340761 /* Build configuration list for PBXNativeTarget "CodeBlue" */;
 			buildPhases = (
+				066DECA417B98D7688E7D33B /* [CP] Check Pods Manifest.lock */,
 				618AA8A627AE098A00340761 /* Sources */,
 				618AA8A727AE098A00340761 /* Frameworks */,
 				618AA8A827AE098A00340761 /* Resources */,
 				618AA8EE27AE099900340761 /* Embed Watch Content */,
+				EE2EA9570A5CD412A31FA892 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -216,8 +296,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 618AA8EB27AE099900340761 /* Build configuration list for PBXNativeTarget "CodeBlue WatchKit App" */;
 			buildPhases = (
+				95338FF107584A3F4FEAC4BF /* [CP] Check Pods Manifest.lock */,
 				618AA8BC27AE099700340761 /* Resources */,
 				618AA8EA27AE099900340761 /* Embed App Extensions */,
+				F163540F3E2527E2F8A502CD /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -233,6 +315,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 618AA8E727AE099900340761 /* Build configuration list for PBXNativeTarget "CodeBlue WatchKit Extension" */;
 			buildPhases = (
+				EBE7F425E7A0D589ED85B32F /* [CP] Check Pods Manifest.lock */,
 				618AA8C927AE099800340761 /* Sources */,
 				618AA8CA27AE099800340761 /* Frameworks */,
 				618AA8CB27AE099800340761 /* Resources */,
@@ -317,6 +400,92 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		066DECA417B98D7688E7D33B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CodeBlue-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		95338FF107584A3F4FEAC4BF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CodeBlue WatchKit App-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EBE7F425E7A0D589ED85B32F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CodeBlue WatchKit Extension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EE2EA9570A5CD412A31FA892 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CodeBlue/Pods-CodeBlue-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-CodeBlue/Pods-CodeBlue-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-CodeBlue/Pods-CodeBlue-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		618AA8A627AE098A00340761 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -325,6 +494,8 @@
 				618AA8AE27AE098A00340761 /* AppDelegate.swift in Sources */,
 				618AA8B027AE098A00340761 /* SceneDelegate.swift in Sources */,
 				618AA8B227AE098A00340761 /* ContentView.swift in Sources */,
+				618AA8F627AE292500340761 /* VisitorView.swift in Sources */,
+				618AA8F827AE296900340761 /* API.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,6 +660,7 @@
 		};
 		618AA8E827AE099900340761 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 77B0B5F251750F21C7F4E1E5 /* Pods-CodeBlue WatchKit Extension.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
@@ -513,6 +685,7 @@
 		};
 		618AA8E927AE099900340761 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 14CF845EED706EE2FE191A2D /* Pods-CodeBlue WatchKit Extension.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
 				CODE_SIGN_STYLE = Automatic;
@@ -538,6 +711,7 @@
 		};
 		618AA8EC27AE099900340761 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 00F11DC6C10D465A4D18CF95 /* Pods-CodeBlue WatchKit App.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -558,6 +732,7 @@
 		};
 		618AA8ED27AE099900340761 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B6D643B752670AC57ED96191 /* Pods-CodeBlue WatchKit App.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -579,6 +754,7 @@
 		};
 		618AA8F027AE099900340761 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A0B73C213EA73E79C18058C /* Pods-CodeBlue.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -602,6 +778,7 @@
 		};
 		618AA8F127AE099900340761 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D1606FEF5A68FA9AC222B6BB /* Pods-CodeBlue.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
