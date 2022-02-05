@@ -23,16 +23,13 @@ class VisitorViewModel: ObservableObject {
                 print("token: \(token)")
             }
         }
-        WCSession.default.sendMessage(["visitorId": 100], replyHandler: nil, errorHandler: { error in
-            print("Watch error \(error)")
-        })
         register(name: userName, seat: seatCode, section: sectionCode, consent: isSupport) { resp in
             if let resp = resp {
                 if let visitorId = resp["visitor_id"] as? Int {
                     UserDefaults.standard.setValue(visitorId, forKey: "visitorId")
-                    WCSession.default.sendMessage(["visitorId": visitorId], replyHandler: nil, errorHandler: { error in
-                        print("Watch error \(error)")
-                    })
+                    if WCSession.default.isReachable {
+                        WCSession.default.sendMessage(["visitorId": visitorId], replyHandler: nil, errorHandler: nil)
+                    }
                     completion(true)
                 }
                 else {
