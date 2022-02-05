@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import WatchConnectivity
+
 
 struct EmergencyView: View {
     static var visitorId: Int = -1
@@ -38,6 +40,9 @@ struct EmergencyView: View {
                 self.timeLeft -= 1
                 if self.timeLeft == 0 {
                     timer.invalidate()
+                    if WCSession.default.isReachable {
+                        WCSession.default.sendMessage(["emergency": 0], replyHandler: nil, errorHandler: nil)
+                    }
                     sendEmergency(visitorId: EmergencyView.visitorId) { resp in
                         print(resp)
                     }

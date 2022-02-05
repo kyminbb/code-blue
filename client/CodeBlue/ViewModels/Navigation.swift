@@ -10,6 +10,12 @@ import SwiftUI
 
 
 class Navigation: ObservableObject {
+    static var shared: Navigation!
+    
+    init() {
+        Navigation.shared = self
+    }
+    
     enum Phase {
         case LOADING
         case ENROUTE

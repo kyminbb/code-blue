@@ -80,4 +80,12 @@ extension AppDelegate: WCSessionDelegate {
     func sessionDidDeactivate(_ session: WCSession) {
         
     }
+    
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        if let _ = message["emergency"] as? Int {
+            DispatchQueue.main.async {
+                Navigation.shared.phase = .ENROUTE
+            }
+        }
+    }
 }
