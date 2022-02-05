@@ -7,9 +7,9 @@ from server.models import Base
 
 
 class Visitor(Base):
-    __tablename__ = "visitors_info"
+    __tablename__ = "visitors"
 
-    _id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True)
     name = Column(String)
     section_seat = Column(String, unique=True)
     section = Column(String)

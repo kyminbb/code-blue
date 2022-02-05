@@ -1,4 +1,5 @@
-python-dotenv
+asyncio
 pydantic
 fastapi
 uvicorn[standard]
+sqlalchemy
