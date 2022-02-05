@@ -31,4 +31,8 @@ class VisitorViewModel: ObservableObject {
             }
         }
     }
+    
+    func fetchRegisterInfo() {
+        
+    }
 }

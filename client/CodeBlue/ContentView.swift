@@ -21,9 +21,13 @@ struct ContentView: View {
             case .VISITOR:
                 VisitorView()
             case .ENROUTE:
-                Rectangle()
+                VStack(spacing: 20) {
+                    Image("logo")
+                    Text("Support is en route!!")
+                        .font(.system(size: 30))
+                }
             case .SUPPORT:
-                Rectangle()
+                SupportView()
             }
         }
         .environmentObject(navi)
