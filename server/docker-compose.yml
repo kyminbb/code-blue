@@ -1,0 +1,19 @@
+services:
+  db:
+    image: postgres:14.1
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+  app:
+    image: code-blue
+    build: .
+    command: bash -c "alembic revision --autogenerate && alembic upgrade head && uvicorn main:app --host 0.0.0.0 --port 80"
+    environment:
+      - PYTHONPATH=/app
+    volumes:
+      - .:/server
+    ports:
+      - "8000:80"
+    depends_on:
+      - db
