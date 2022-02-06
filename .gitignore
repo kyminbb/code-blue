@@ -15,7 +15,6 @@
 **/.idea/
 *.iml
 
-
 # Created by https://www.toptal.com/developers/gitignore/api/xcode,swift
 # Edit at https://www.toptal.com/developers/gitignore?templates=xcode,swift
 
@@ -88,3 +87,12 @@ client/iOSInjectionProject/
 /*.gcno
 **/xcshareddata/WorkspaceSettings.xcsettings
 
+# Alembic
+**/alembic/
+*alembic.ini
+
+# Env files
+*.env
+
+# JSON files
+*.json

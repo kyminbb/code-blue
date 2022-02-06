@@ -1,0 +1,9 @@
+asyncio
+pydantic
+python-dotenv
+fastapi
+uvicorn[standard]
+sqlalchemy
+asyncpg
+alembic
+firebase-admin
