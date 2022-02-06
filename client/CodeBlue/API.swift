@@ -16,6 +16,7 @@ func request(route: String, method: HTTPMethod, params: [String: Any]?, completi
     AF.request(baseUrl + route, method: method, parameters: params, encoding: JSONEncoding.default, headers: headers)
         .validate(statusCode: 200..<300)
         .responseJSON { response in
+            print("\(response) from  \(route)")
             switch response.result {
             case .success:
                 if let jsonObject = try! response.result.get() as? [String: Any] {
@@ -25,7 +26,7 @@ func request(route: String, method: HTTPMethod, params: [String: Any]?, completi
                     print("Failed to parse json")
                     completion(nil)
                 }
-            case .failure(let error):
+            case .failure:
                 completion(nil)
             }
         }

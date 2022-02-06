@@ -62,6 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     }
                     else {
                         UserDefaults.standard.removeObject(forKey: "visitorId")
+                        UserDefaults.standard.removeObject(forKey: "fromGate")
                     }
                 }
                 

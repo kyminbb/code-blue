@@ -23,6 +23,8 @@ class VisitorViewModel: ObservableObject {
                 if let resp = resp {
                     if let visitorId = resp["visitor_id"] as? Int {
                         UserDefaults.standard.setValue(visitorId, forKey: "visitorId")
+                        let fromGate = String(resp["gate"] as? Int ?? 0)
+                        UserDefaults.standard.setValue(fromGate, forKey: "fromGate")
                         if WCSession.default.isReachable {
                             WCSession.default.sendMessage(["visitorId": visitorId], replyHandler: nil, errorHandler: nil)
                         }
@@ -65,6 +67,7 @@ class VisitorViewModel: ObservableObject {
                 }
                 else {
                     UserDefaults.standard.removeObject(forKey: "visitorId")
+                    UserDefaults.standard.removeObject(forKey: "fromGate")
                     completion(nil)
                 }
             }

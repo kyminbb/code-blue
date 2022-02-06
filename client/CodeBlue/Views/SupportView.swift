@@ -13,8 +13,8 @@ struct EmergencyInfo {
     var patientSeat: String
     
     init(resp: [AnyHashable: Any]) {
+        self.fromGate = UserDefaults.standard.string(forKey: "fromGate") ?? "??"
         self.toGate = resp["to_gate"] as? String ?? "??"
-        self.fromGate = resp["from_gate"] as? String ?? "??"
         self.patientSeat = resp["patient_seat"] as? String ?? "??"
     }
 }
