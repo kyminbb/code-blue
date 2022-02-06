@@ -12,5 +12,6 @@ class Visitor(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String)
     section_seat = Column(String, unique=True)
-    section = Column(String)
+    section = Column(Integer)
     consent = Column(Boolean)
+    fcm_token = Column(String)
