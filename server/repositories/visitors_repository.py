@@ -3,6 +3,7 @@ from typing import Optional
 
 from sqlalchemy import func
 from sqlalchemy import select
+from sqlalchemy import update
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -39,6 +40,16 @@ class VisitorsRepository:
     async def get_visitor(self, visitor_id: int) -> Optional[Visitor]:
         result = await self.session.execute(select(Visitor).where(Visitor.id == visitor_id))
         return result.scalar()
+
+    async def update_token(self, visitor_id: int, fcm_token: str) -> int:
+        statement = update(Visitor).where(Visitor.id == visitor_id).values(fcm_token=fcm_token)
+        await self.session.execute(statement)
+        try:
+            await self.session.commit()
+            return visitor_id
+        except IntegrityError:
+            await self.session.rollback()
+            return -1
 
     async def get_gate(self, visitor_id: int) -> int:
         statement = select(Section.gate).join(
