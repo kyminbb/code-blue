@@ -5,7 +5,8 @@ from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from server.models.visitors import Visitor
+from server.model.gate_section import GateSection
+from server.model.visitor import Visitor
 
 
 class VisitorsRepository:
@@ -26,8 +27,22 @@ class VisitorsRepository:
         except IntegrityError:
             await self.session.rollback()
             return -1
+    
+    async def get_visitor(self, visitor_id: int) -> Optional[Visitor]:
+        async with self.async_session() as session:
+            result = await session.execute(select(Visitor).where(Visitor.id == visitor_id))
+            return result.scalar()
 
+    async def get_gate(self, visitor_id : int) -> str:
+        async with self.async_session() as session:
+            result = await session.execute(select(GateSection.gate).join(Visitor,
+                                                                         Visitor.section == GateSection.section)
+                                           .where(Visitor.id == visitor_id))
+            return result.scalar()
 
-async def get_visitor(self, visitor_id: int) -> Optional[Visitor]:
-    result = await self.session.execute(select(Visitor).where(Visitor.id == visitor_id))
-    return result.scalar()
+    async def get_doctors(self) -> Optional[Visitor]:
+        async with self.async_session() as session:
+            result = await session.execute(select(Visitor.id,GateSection.section,GateSection.gate).
+                                           join(Visitor,Visitor.section == GateSection.section)
+                                           .where(Visitor.consent == True))
+            return result.scalars()
