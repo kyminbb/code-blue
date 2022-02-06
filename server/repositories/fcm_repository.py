@@ -27,9 +27,15 @@ class FCMRepository:
             notification=messaging.Notification(
                 title="EMERGENCY ALERT",
                 body=f"Heart attack occurred at section {data.patient_section} seat {data.patient_seat}"
-            ), data=message_data, token=client_token
+            ),
+            data=message_data,
+            token=client_token
         )
-        messaging.send(message)
+        try:
+            messaging.send(message)
+        except messaging.UnregisteredError:
+            # TODO: Delete visitor_id from DB
+            pass
 
     async def multicast_message(self, client_tokens: List[str], data: Union[DoctorMessage]) -> None:
         self._initialize()
@@ -38,6 +44,12 @@ class FCMRepository:
             notification=messaging.Notification(
                 title="EMERGENCY ALERT",
                 body=f"Heart attack occurred at section {data.patient_section} seat {data.patient_seat}"
-            ), data=message_data, tokens=client_tokens
+            ),
+            data=message_data,
+            tokens=set(client_tokens)
         )
-        messaging.send_multicast(message)
+        try:
+            messaging.send_multicast(message)
+        except messaging.UnregisteredError:
+            # TODO: Delete visitor_id from DB
+            pass

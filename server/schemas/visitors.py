@@ -22,3 +22,4 @@ class UpdateTokenRequest(BaseModel):
 
 class VisitorResponse(BaseModel):
     visitor_id: int
+    gate: int

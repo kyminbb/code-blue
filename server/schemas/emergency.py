@@ -8,7 +8,6 @@ class Emergency(BaseModel):
 
 class DoctorMessage(BaseModel):
     emergency_code: int
-    from_gate: int
     to_gate: int
     patient_section: int
     patient_seat: str

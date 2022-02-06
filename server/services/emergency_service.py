@@ -67,21 +67,30 @@ class EmergencyService:
 
         patient_seat = "".join(patient.section_seat.split("_")[1:])
         nearest_doctors = []
-        for doctors in doctors_by_gates.values():
-            nearest_doctors.extend(doctors)
+        for gate_doctors in doctors_by_gates.values():
+            nearest_doctors.extend([fcm_token for fcm_token, _ in gate_doctors])
         # nearest_doctors = await self._find_nearest_doctors(patient_gate, doctors_by_gates)
 
-        await asyncio.gather(
-            *(self.fcm_repository.send_message(
-                doctor_token,
-                DoctorMessage(
-                    emergency_code=emergency.emergency_code,
-                    from_gate=doctor_gate,
-                    to_gate=patient_gate,
-                    patient_section=patient.section,
-                    patient_seat=patient_seat
-                )
-            ) for doctor_token, doctor_gate in nearest_doctors)
+        await self.fcm_repository.multicast_message(
+            nearest_doctors, DoctorMessage(
+                emergency_code=emergency.emergency_code,
+                to_gate=patient_gate,
+                patient_section=patient.section,
+                patient_seat=patient_seat
+            )
         )
+
+        # await asyncio.gather(
+        #     *(self.fcm_repository.send_message(
+        #         doctor_token,
+        #         DoctorMessage(
+        #             emergency_code=emergency.emergency_code,
+        #             from_gate=doctor_gate,
+        #             to_gate=patient_gate,
+        #             patient_section=patient.section,
+        #             patient_seat=patient_seat
+        #         )
+        #     ) for doctor_token, doctor_gate in nearest_doctors)
+        # )
         # TODO: Send messages to nearby visitors to back off
         return True
