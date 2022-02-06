@@ -73,10 +73,23 @@ class DBRepository:
         result = await self.session.execute(statement)
         return result.scalar()
 
-    async def get_doctors(self) -> List[Doctor]:
+    async def get_doctors(self):
         statement = select(Visitor.fcm_token, Section.section, Section.gate).join(
             Visitor,
             Visitor.section == Section.section
         ).where(Visitor.consent)
+        result = await self.session.execute(statement)
+        return result.fetchall()
+
+    async def get_patient_row(self, patient_id) -> str:
+        statement = select(Visitor.section_seat).where(Visitor.id == patient_id)
+        result = await self.session.execute(statement)
+        row = result.scalar().split("_")
+        gate_section = row[0] + "_" + row[1] + "_"
+        return gate_section
+
+    async def get_row_token(self, patient_id : int):
+        location = await self.get_patient_row(patient_id)
+        statement = select(Visitor.fcm_token).filter(Visitor.id != patient_id).where(Visitor.section_seat.startswith(location))
         result = await self.session.execute(statement)
         return result.fetchall()
