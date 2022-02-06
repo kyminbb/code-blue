@@ -6,8 +6,8 @@ from typing import Tuple
 
 import asyncio
 
-from server.repositories.fcm_repository import FCMRepository
 from server.repositories.db_repository import DBRepository
+from server.repositories.fcm_repository import FCMRepository
 from server.schemas.emergency import DoctorMessage
 from server.schemas.emergency import Emergency
 from server.schemas.visitors import Doctor
@@ -51,11 +51,10 @@ class EmergencyService:
                     queue.append(neighbor_gate)
         return nearest_doctors
 
-    async def handle_emergency(self, emergency: Emergency) -> None:
+    async def handle_emergency(self, emergency: Emergency) -> bool:
         doctors = await self.db_repository.get_doctors()
         if not doctors:
-            # TODO: Handle when there is no doctor at all
-            return
+            return True
 
         results = await asyncio.gather(
             self.db_repository.get_visitor(emergency.visitor_id),
@@ -63,9 +62,15 @@ class EmergencyService:
             self._preprocess_doctors(doctors),
         )
         patient, patient_gate, doctors_by_gates = results[0], results[1], results[2]
-        patient_seat = patient.section_seat.split("_")[1]
-        nearest_doctors = doctors_by_gates
+        if not patient:
+            return False
+
+        patient_seat = "".join(patient.section_seat.split("_")[1:])
+        nearest_doctors = []
+        for doctors in doctors_by_gates.values():
+            nearest_doctors.extend(doctors)
         # nearest_doctors = await self._find_nearest_doctors(patient_gate, doctors_by_gates)
+
         await asyncio.gather(
             *(self.fcm_repository.send_message(
                 doctor_token,
@@ -79,3 +84,4 @@ class EmergencyService:
             ) for doctor_token, doctor_gate in nearest_doctors)
         )
         # TODO: Send messages to nearby visitors to back off
+        return True

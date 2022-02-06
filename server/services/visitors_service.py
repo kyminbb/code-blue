@@ -29,7 +29,7 @@ class VisitorsService:
         return Visitor(
             name=visitor.name,
             section=visitor.section,
-            seat=visitor.section_seat.split("_")[1],
+            seat="".join(visitor.section_seat.split("_")[1:]),
             consent=visitor.consent,
             fcm_token=visitor.fcm_token
         )
