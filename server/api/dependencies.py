@@ -7,7 +7,6 @@ from sqlalchemy.ext.asyncio import create_async_engine
 from sqlalchemy.orm import sessionmaker
 
 from server.core.config import Settings
-from server.models import Base
 from server.repositories.db_repository import DBRepository
 from server.repositories.fcm_repository import FCMRepository
 from server.services.emergency_service import EmergencyService
@@ -24,9 +23,7 @@ session_maker: sessionmaker = sessionmaker(engine, class_=AsyncSession, expire_o
 
 
 async def start_db() -> None:
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.drop_all)
-        await conn.run_sync(Base.metadata.create_all)
+    pass
 
 
 async def shutdown_db() -> None:

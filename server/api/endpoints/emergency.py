@@ -9,7 +9,7 @@ from server.services.emergency_service import EmergencyService
 router = APIRouter(prefix="/emergency")
 
 
-@router.post("/", status_code=status.HTTP_204_NO_CONTENT)
+@router.post("", status_code=status.HTTP_202_ACCEPTED)
 async def detect_emergency(
     emergency: Emergency,
     emergency_service: EmergencyService = Depends(get_emergency_service)
