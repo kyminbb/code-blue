@@ -7,7 +7,7 @@ from typing import Tuple
 import asyncio
 
 from server.repositories.fcm_repository import FCMRepository
-from server.repositories.visitors_repository import VisitorsRepository
+from server.repositories.db_repository import DBRepository
 from server.schemas.emergency import DoctorMessage
 from server.schemas.emergency import Emergency
 from server.schemas.visitors import Doctor
@@ -17,8 +17,8 @@ graph = dict()
 
 
 class EmergencyService:
-    def __init__(self, visitors_repository: VisitorsRepository, fcm_repository: FCMRepository):
-        self.visitors_repository = visitors_repository
+    def __init__(self, db_repository: DBRepository, fcm_repository: FCMRepository):
+        self.db_repository = db_repository
         self.fcm_repository = fcm_repository
 
     @classmethod
@@ -52,19 +52,19 @@ class EmergencyService:
         return nearest_doctors
 
     async def handle_emergency(self, emergency: Emergency) -> None:
-        doctors = await self.visitors_repository.get_doctors()
+        doctors = await self.db_repository.get_doctors()
         if not doctors:
             # TODO: Handle when there is no doctor at all
             return
 
         results = await asyncio.gather(
-            self.visitors_repository.get_visitor(emergency.visitor_id),
-            self.visitors_repository.get_gate(emergency.visitor_id),
+            self.db_repository.get_visitor(emergency.visitor_id),
+            self.db_repository.get_gate(emergency.visitor_id),
             self._preprocess_doctors(doctors),
         )
         patient, patient_gate, doctors_by_gates = results[0], results[1], results[2]
         patient_seat = patient.section_seat.split("_")[1]
-        nearest_doctors = doctors
+        nearest_doctors = doctors_by_gates
         # nearest_doctors = await self._find_nearest_doctors(patient_gate, doctors_by_gates)
         await asyncio.gather(
             *(self.fcm_repository.send_message(

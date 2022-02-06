@@ -12,7 +12,7 @@ from server.models.visitors import Visitor
 from server.schemas.visitors import Doctor
 
 
-class VisitorsRepository:
+class DBRepository:
     def __init__(self, session: AsyncSession):
         self.session = session
 
