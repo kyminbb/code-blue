@@ -11,6 +11,8 @@ struct RegisterView: View {
     @EnvironmentObject var visitorVM: VisitorViewModel
     @EnvironmentObject var navi: Navigation
     
+    @State var showAlert: Bool = false
+    
     var nameField: some View {
         HStack {
             Text("Name: ")
@@ -50,6 +52,7 @@ struct RegisterView: View {
                 .font(.system(size: 20))
                 .padding(5)
                 .border(Color.black)
+                .keyboardType(.numbersAndPunctuation)
         }
     }
     
@@ -88,7 +91,11 @@ struct RegisterView: View {
                 if result {
                     navi.isRegistered = true
                 } else {
-                    print("Register Failed")
+                    visitorVM.userName = ""
+                    visitorVM.seatCode = ""
+                    visitorVM.sectionCode = ""
+                    visitorVM.isSupport = false
+                    showAlert = true
                 }
             }
         }, label: {
@@ -103,6 +110,9 @@ struct RegisterView: View {
                 RoundedRectangle(cornerRadius: 10)
             )
         })
+        .alert(isPresented: $showAlert) {
+            Alert(title: Text("Register Failed"), message: Text("Please try again"), dismissButton: .default(Text("OK")))
+        }
     }
     
     var body: some View {
@@ -137,7 +147,7 @@ struct VisitorView: View {
             VStack(spacing: 20) {
                 Image("logo")
                 
-                Text("You are registered")
+                Text("You are registered as")
                     .fixedSize()
                     .font(.system(size: 20))
                     .foregroundColor(.blue)
@@ -152,9 +162,9 @@ struct VisitorView: View {
                     Text("Section: \(visitorVM.sectionCode)")
                         .fixedSize()
                         .font(.system(size: 17))
-    //                Text("Name: \(visitorVM.userName)")
-    //                    .fixedSize()
-    //                    .font(.system(size: 20))
+                    Text("Emergency Help: \(visitorVM.isSupport ? "Yes": "No")")
+                        .fixedSize()
+                        .font(.system(size: 17))
                 }
             }
         }

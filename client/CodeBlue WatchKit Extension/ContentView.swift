@@ -8,35 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var timeLeft: Int = 5
-    @State var mTimer: Timer!
+    @State var isEmergency: Bool = false
     
     var body: some View {
-        VStack(spacing: 10) {
-            Text("Hard Fall Detected!!")
-                .font(.system(size: 20))
-            VStack {
-                Text("Sending emergency notification in")
-                    .font(.system(size: 15))
-                    .multilineTextAlignment(.center)
-                Text("\(self.timeLeft)")
-                    .font(.system(size: 15))
-            }
-            
-            Button(action: {
-                
-            }, label: {
-                Text("I'm okay")
-            })
-            .buttonStyle(BorderedButtonStyle(tint: .blue))
-            .foregroundColor(.white)
+        if isEmergency {
+            EmergencyView()
         }
-        .onAppear() {
-            self.mTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
-                self.timeLeft -= 1
-                if self.timeLeft == 0 {
-                    timer.invalidate()
-                }
+        else {
+            VStack {
+                Image("logo")
+                    .scaleEffect(0.5)
+                Text("Monitoring...")
+            }
+            .onTapGesture {
+                isEmergency = true
             }
         }
     }

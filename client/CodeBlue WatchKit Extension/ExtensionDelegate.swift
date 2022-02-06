@@ -13,7 +13,6 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     override init() {
         super.init()
         if(WCSession.isSupported()) {
-            print("Watch Supported")
             WCSession.default.delegate = self
             WCSession.default.activate()
         }
@@ -66,6 +65,14 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
 extension ExtensionDelegate: WCSessionDelegate {
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        print(session.receivedApplicationContext)
+    }
+    
+    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String : Any]) {
+
+    }
+    
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        print("Mesg received \(message)")
+        EmergencyView.visitorId = message["visitorId"] as? Int ?? -1
     }
 }

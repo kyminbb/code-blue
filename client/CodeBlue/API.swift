@@ -26,20 +26,19 @@ func request(route: String, method: HTTPMethod, params: [String: Any]?, completi
                     completion(nil)
                 }
             case .failure(let error):
-                print(error)
                 completion(nil)
             }
         }
 }
 
-func register(name: String, seat: String, section: String, consent: Bool, completion: @escaping ([String: Any]?) -> Void) {
+func register(name: String, seat: String, section: Int, consent: Bool, token: String, completion: @escaping ([String: Any]?) -> Void) {
     let params: [String: Any] = [
         "name": name,
         "seat": seat,
         "section": section,
-        "consent": consent
+        "consent": consent,
+        "fcm_token": token
     ]
-    
     request(route: "/api/visitors/register", method: .put, params: params) { resp in
         completion(resp)
     }
@@ -48,5 +47,25 @@ func register(name: String, seat: String, section: String, consent: Bool, comple
 func getVisitor(visitorId: Int, completion: @escaping ([String: Any]?) -> Void) {
     request(route: "/api/visitors/\(visitorId)", method: .get, params: nil) { resp in
         completion(resp)
+    }
+}
+
+func sendEmergency(visitorId: Int, completion: @escaping ([String: Any]?) -> Void) {
+    let params: [String: Any] = [
+        "visitor_id": visitorId,
+        "emergency_code": 0
+    ]
+    request(route: "/api/emergency", method: .post, params: params) { resp in
+        completion(resp)
+    }
+}
+
+func updateToken(visitorId: Int, token: String) {
+    let params: [String: Any] = [
+        "visitor_id": visitorId,
+        "fcm_token": token
+    ]
+    request(route: "/api/visitors/update_token", method: .post, params: params) { _ in
+        
     }
 }

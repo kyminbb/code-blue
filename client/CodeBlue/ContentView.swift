@@ -23,7 +23,7 @@ struct ContentView: View {
             case .ENROUTE:
                 VStack(spacing: 20) {
                     Image("logo")
-                    Text("Support is en route!!")
+                    Text("Help is on the way!!")
                         .font(.system(size: 30))
                 }
             case .SUPPORT:
@@ -33,7 +33,17 @@ struct ContentView: View {
         .environmentObject(navi)
         .environmentObject(visitorVM)
         .onAppear() {
-            getVisitor(visitorId: 1) { resp in
+            visitorVM.fetchRegisterInfo { resp in
+                if let resp = resp {
+                    visitorVM.userName = resp["name"] as? String ?? ""
+                    visitorVM.seatCode = resp["seat"] as? String ?? ""
+                    visitorVM.sectionCode = String(resp["section"] as? Int ?? 0)
+                    visitorVM.isSupport = resp["consent"] as? Bool ?? false
+                    navi.isRegistered = true
+                }
+                else {
+                    navi.isRegistered = false
+                }
                 navi.phase = .VISITOR
             }
         }

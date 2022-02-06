@@ -33,7 +33,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         Messaging.messaging().isAutoInitEnabled = true
         
         if(WCSession.isSupported()) {
-            print("WatchKit supported")
             WCSession.default.delegate = self
             WCSession.default.activate()
         }
@@ -55,6 +54,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        if let token = fcmToken {
+            if let visitorId = UserDefaults.standard.value(forKey: "visitorId") as? Int {
+                getVisitor(visitorId: visitorId) { resp in
+                    if let _ = resp {
+                        updateToken(visitorId: visitorId, token: token)
+                    }
+                    else {
+                        UserDefaults.standard.removeObject(forKey: "visitorId")
+                    }
+                }
+                
+            }
+        }
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
@@ -62,17 +74,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        
+        let userInfo = response.notification.request.content.userInfo
+        Messaging.messaging().appDidReceiveMessage(userInfo)
+        SupportView.info = EmergencyInfo(resp: userInfo)
+        Navigation.shared.phase = .SUPPORT
+        completionHandler()
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        SupportView.info = EmergencyInfo(resp: notification.request.content.userInfo)
+        Navigation.shared.phase = .SUPPORT
         completionHandler([.banner, .sound])
     }
 }
 
 extension AppDelegate: WCSessionDelegate {
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        try! session.updateApplicationContext(["hello": "WOrld"])
     }
     
     func sessionDidBecomeInactive(_ session: WCSession) {
@@ -81,5 +98,13 @@ extension AppDelegate: WCSessionDelegate {
     
     func sessionDidDeactivate(_ session: WCSession) {
         
+    }
+    
+    func session(_ session: WCSession, didReceiveMessage message: [String : Any]) {
+        if let _ = message["emergency"] as? Int {
+            DispatchQueue.main.async {
+                Navigation.shared.phase = .ENROUTE
+            }
+        }
     }
 }
