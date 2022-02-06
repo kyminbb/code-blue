@@ -15,5 +15,10 @@ class Doctor(BaseModel):
     fcm_token: str
 
 
-class RegisterResponse(BaseModel):
+class UpdateTokenRequest(BaseModel):
+    visitor_id: int
+    fcm_token: str
+
+
+class VisitorResponse(BaseModel):
     visitor_id: int

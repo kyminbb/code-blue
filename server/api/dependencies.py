@@ -7,9 +7,8 @@ from sqlalchemy.ext.asyncio import create_async_engine
 from sqlalchemy.orm import sessionmaker
 
 from server.core.config import Settings
-from server.models import Base
+from server.repositories.db_repository import DBRepository
 from server.repositories.fcm_repository import FCMRepository
-from server.repositories.visitors_repository import VisitorsRepository
 from server.services.emergency_service import EmergencyService
 from server.services.visitors_service import VisitorsService
 
@@ -24,9 +23,7 @@ session_maker: sessionmaker = sessionmaker(engine, class_=AsyncSession, expire_o
 
 
 async def start_db() -> None:
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.drop_all)
-        await conn.run_sync(Base.metadata.create_all)
+    pass
 
 
 async def shutdown_db() -> None:
@@ -38,20 +35,20 @@ async def get_session() -> AsyncSession:
         yield session
 
 
-def get_visitors_repository(session: AsyncSession = Depends(get_session)) -> VisitorsRepository:
-    return VisitorsRepository(session)
+def get_db_repository(session: AsyncSession = Depends(get_session)) -> DBRepository:
+    return DBRepository(session)
 
 
 def get_fcm_repository(settings: Settings = Depends(get_settings)) -> FCMRepository:
     return FCMRepository(settings)
 
 
-def get_visitors_service(visitors_repository: VisitorsRepository = Depends(get_visitors_repository)) -> VisitorsService:
+def get_visitors_service(visitors_repository: DBRepository = Depends(get_db_repository)) -> VisitorsService:
     return VisitorsService(visitors_repository)
 
 
 def get_emergency_service(
-    visitors_repository: VisitorsRepository = Depends(get_visitors_repository),
+    db_repository: DBRepository = Depends(get_db_repository),
     fcm_repository: FCMRepository = Depends(get_fcm_repository)
 ) -> EmergencyService:
-    return EmergencyService(visitors_repository, fcm_repository)
+    return EmergencyService(db_repository, fcm_repository)
