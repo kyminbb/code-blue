@@ -17,14 +17,9 @@ class VisitorViewModel: ObservableObject {
     @Published var sectionCode: String = ""
     @Published var isSupport: Bool = false
     
-    func submit(completion: @escaping (Bool) -> Void) {
-        Messaging.messaging().token { token, error in
-            if let token = token {
-                print("token: \(token)")
-            }
-        }
+    private func registerWithToken(token: String, completion: @escaping (Bool) -> Void) {
         if let section = Int(sectionCode) {
-            register(name: userName, seat: seatCode, section: section, consent: isSupport) { resp in
+            register(name: userName, seat: seatCode, section: section, consent: isSupport, token: token) { resp in
                 if let resp = resp {
                     if let visitorId = resp["visitor_id"] as? Int {
                         UserDefaults.standard.setValue(visitorId, forKey: "visitorId")
@@ -44,6 +39,17 @@ class VisitorViewModel: ObservableObject {
         }
         else {
             completion(false)
+        }
+    }
+    
+    func submit(completion: @escaping (Bool) -> Void) {
+        Messaging.messaging().token { token, error in
+            if let token = token {
+                self.registerWithToken(token: token, completion: completion)
+            }
+            else {
+                completion(false)
+            }
         }
     }
     

@@ -37,7 +37,7 @@ struct ContentView: View {
                 if let resp = resp {
                     visitorVM.userName = resp["name"] as? String ?? ""
                     visitorVM.seatCode = resp["seat"] as? String ?? ""
-                    visitorVM.sectionCode = resp["section"] as? String ?? ""
+                    visitorVM.sectionCode = String(resp["section"] as? Int ?? 0)
                     navi.isRegistered = true
                 }
                 else {

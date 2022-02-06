@@ -32,12 +32,13 @@ func request(route: String, method: HTTPMethod, params: [String: Any]?, completi
         }
 }
 
-func register(name: String, seat: String, section: Int, consent: Bool, completion: @escaping ([String: Any]?) -> Void) {
+func register(name: String, seat: String, section: Int, consent: Bool, token: String, completion: @escaping ([String: Any]?) -> Void) {
     let params: [String: Any] = [
         "name": name,
         "seat": seat,
         "section": section,
-        "consent": consent
+        "consent": consent,
+        "fcm_token": token
     ]
     
     request(route: "/api/visitors/register", method: .put, params: params) { resp in
