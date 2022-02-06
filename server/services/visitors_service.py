@@ -1,9 +1,9 @@
 from typing import Optional
 
 from server.repositories.visitors_repository import VisitorsRepository
-from server.schemas.visitors import RegisterResponse
 from server.schemas.visitors import UpdateTokenRequest
 from server.schemas.visitors import Visitor
+from server.schemas.visitors import VisitorResponse
 
 
 class VisitorsService:
