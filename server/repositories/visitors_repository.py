@@ -6,8 +6,9 @@ from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from gate_section import Section
-from visitors import Visitor
+from server.models.sections import Section
+from server.models.visitors import Visitor
+from server.schemas.visitors import Doctor
 
 
 class VisitorsRepository:
@@ -47,13 +48,13 @@ class VisitorsRepository:
         result = await self.session.execute(statement)
         return result.scalar()
 
-    # async def get_doctors(self):
-    #     statement = select(Visitor.fcm_token, Section.section, Section.gate).join(
-    #         Visitor,
-    #         Visitor.section == Section.section
-    #     ).where(Visitor.consent)
-    #     result = await self.session.execute(statement)
-    #     return result.fetchall()
+    async def get_doctors(self):
+        statement = select(Visitor.fcm_token, Section.section, Section.gate).join(
+            Visitor,
+            Visitor.section == Section.section
+        ).where(Visitor.consent)
+        result = await self.session.execute(statement)
+        return result.fetchall()
 
     async def get_patient_row(self, patient_id) -> str:
         statement = select(Visitor.section_seat).where(Visitor.id == patient_id)
