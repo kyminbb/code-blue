@@ -46,7 +46,7 @@ class FCMRepository:
                 body=f"Heart attack occurred at section {data.patient_section} seat {data.patient_seat}"
             ),
             data=message_data,
-            tokens=set(client_tokens)
+            tokens=list(set(client_tokens))
         )
         try:
             messaging.send_multicast(message)
