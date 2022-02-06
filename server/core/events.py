@@ -3,19 +3,19 @@ from typing import Callable
 
 from fastapi import FastAPI
 
-from server.api.dependencies import _get_reusable_session_maker
-from server.api.dependencies import close_db
+from server.api.dependencies import shutdown_db
+from server.api.dependencies import start_db
 
 
 def create_start_app_handler(app: FastAPI) -> Callable[..., Any]:
     async def start_app() -> None:
-        _get_reusable_session_maker()
+        await start_db()
 
     return start_app
 
 
 def create_shutdown_app_handler(app: FastAPI) -> Callable[..., Any]:
     async def shutdown_app() -> None:
-        await close_db()
+        await shutdown_db()
 
     return shutdown_app
