@@ -81,6 +81,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             SupportView.info = EmergencyInfo(resp: userInfo)
             Navigation.shared.phase = .SUPPORT
         }
+        else {
+            Navigation.shared.isBackOff = true
+            Navigation.shared.phase = .VISITOR
+        }
         completionHandler()
     }
     
@@ -89,6 +93,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if let _ = userInfo["patient_seat"] as? String {
             SupportView.info = EmergencyInfo(resp: userInfo)
             Navigation.shared.phase = .SUPPORT
+        }
+        else {
+            Navigation.shared.isBackOff = true
+            Navigation.shared.phase = .VISITOR
         }
         completionHandler([.banner, .sound])
     }

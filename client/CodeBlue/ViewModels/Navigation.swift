@@ -24,6 +24,7 @@ class Navigation: ObservableObject {
     }
     
     @Published var isRegistered: Bool = false
+    @Published var isBackOff: Bool = false
     
     @Published var phase: Phase = .LOADING
 }

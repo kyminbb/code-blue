@@ -31,8 +31,7 @@ struct SupportView: View {
             if let info = SupportView.info {
                 VStack(spacing: 5) {
                     Text("Emergency occured at \(info.patientSeat)")
-                    Text("Exit your section through Gate \(info.fromGate)")
-                    Text("Enter your section through Gate \(info.toGate)")
+                    Text("Gate \(info.fromGate) => Gate \(info.toGate)")
                 }
             }
         }

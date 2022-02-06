@@ -139,7 +139,18 @@ struct VisitorView: View {
     @EnvironmentObject var navi: Navigation
     
     var body: some View {
-        if !navi.isRegistered {
+        if navi.isBackOff {
+            VStack(spacing: 20) {
+                Image("logo")
+                
+                Image("siren")
+                
+                Text("Please make a way!")
+                    .fixedSize()
+                    .font(.system(size: 25))
+            }
+        }
+        else if !navi.isRegistered {
             RegisterView()
                 .environmentObject(visitorVM)
         }
