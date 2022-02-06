@@ -162,6 +162,9 @@ struct VisitorView: View {
                     Text("Section: \(visitorVM.sectionCode)")
                         .fixedSize()
                         .font(.system(size: 17))
+                    Text("Emergency Help: \(visitorVM.isSupport ? "Yes": "No")")
+                        .fixedSize()
+                        .font(.system(size: 17))
                 }
             }
         }

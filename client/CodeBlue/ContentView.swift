@@ -38,6 +38,7 @@ struct ContentView: View {
                     visitorVM.userName = resp["name"] as? String ?? ""
                     visitorVM.seatCode = resp["seat"] as? String ?? ""
                     visitorVM.sectionCode = String(resp["section"] as? Int ?? 0)
+                    visitorVM.isSupport = resp["consent"] as? Bool ?? false
                     navi.isRegistered = true
                 }
                 else {

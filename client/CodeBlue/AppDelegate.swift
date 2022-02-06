@@ -54,9 +54,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        if let visitorId = UserDefaults.standard.value(forKey: "visitorId") as? Int {
-            if let token = fcmToken {
-                updateToken(visitorId: visitorId, token: token)
+        if let token = fcmToken {
+            if let visitorId = UserDefaults.standard.value(forKey: "visitorId") as? Int {
+                getVisitor(visitorId: visitorId) { resp in
+                    if let _ = resp {
+                        updateToken(visitorId: visitorId, token: token)
+                    }
+                    else {
+                        UserDefaults.standard.removeObject(forKey: "visitorId")
+                    }
+                }
+                
             }
         }
     }
@@ -66,7 +74,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        
+        let userInfo = response.notification.request.content.userInfo
+        Messaging.messaging().appDidReceiveMessage(userInfo)
+        print(userInfo)
+        Navigation.shared.phase = .SUPPORT
+        completionHandler()
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
