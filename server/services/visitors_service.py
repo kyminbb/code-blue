@@ -25,11 +25,10 @@ class VisitorsService:
         visitor = await self.visitors_repository.get_visitor(visitor_id)
         if not visitor:
             return None
-        section_seat = visitor.section_seat.split("_")
         return Visitor(
             name=visitor.name,
-            section=int(section_seat[0]),
-            seat=section_seat[1],
+            section=visitor.section,
+            seat=visitor.section_seat.split("_")[1],
             consent=visitor.consent,
             fcm_token=visitor.fcm_token
         )
