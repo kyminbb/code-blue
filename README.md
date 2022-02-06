@@ -1,12 +1,13 @@
 # CodeBlue
 
 CodeBlue is a mobile application and a server that our team (4rsenal) completed over 3 days
-in [TartanHacks 2022](https://www.tartanhacks.com).
+in [TartanHacks 2022](https://www.tartanhacks.com). The name came from a hospital emergency code used to describe the 
+critical status of a patient.
 
 ## Inspiration
 
 With recent awareness of heart attack becoming high in the sports scenes, the health of the spectators/crowd has also
-become a major issue. Recently in the English Premier League(EPL) there have been several cases of sudden heart attacks
+become a major issue. Recently in the English Premier League (EPL) there have been several cases of sudden heart attacks
 which have put lives in danger. It came to our knowledge that these kinds of sudden heart attacks in the stands were
 nothing new but something that we became aware of recently. We have seen multiple matches being stopped in the middle,
 to give time and space for the patient. However, the crowdedness and the enormity of the stadiums makes it difficult to
