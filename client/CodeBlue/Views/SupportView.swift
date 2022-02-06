@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct EmergencyInfo {
-    var toGate: Int
-    var fromGate: Int
+    var toGate: String
+    var fromGate: String
     var patientSeat: String
     
     init(resp: [AnyHashable: Any]) {
-        self.toGate = resp["to_gate"] as? Int ?? 0
-        self.fromGate = resp["from_gate"] as? Int ?? 0
+        self.toGate = resp["to_gate"] as? String ?? "??"
+        self.fromGate = resp["from_gate"] as? String ?? "??"
         self.patientSeat = resp["patient_seat"] as? String ?? "??"
     }
 }
@@ -32,7 +32,7 @@ struct SupportView: View {
                 VStack(spacing: 5) {
                     Text("Emergency occured at \(info.patientSeat)")
                     Text("Exit your section through Gate \(info.fromGate)")
-                    Text("Exit your section through Gate \(info.toGate)")
+                    Text("Enter your section through Gate \(info.toGate)")
                 }
             }
         }
