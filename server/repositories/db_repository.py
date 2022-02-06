@@ -73,7 +73,7 @@ class DBRepository:
         result = await self.session.execute(statement)
         return result.scalar()
 
-    async def get_doctors(self):
+    async def get_doctors(self) -> List[Doctor]:
         statement = select(Visitor.fcm_token, Section.section, Section.gate).join(
             Visitor,
             Visitor.section == Section.section
@@ -81,15 +81,17 @@ class DBRepository:
         result = await self.session.execute(statement)
         return result.fetchall()
 
-    async def get_patient_row(self, patient_id) -> str:
-        statement = select(Visitor.section_seat).where(Visitor.id == patient_id)
+    async def get_visitor_row(self, visitor_id: int) -> str:
+        statement = select(Visitor.section_seat).where(Visitor.id == visitor_id)
         result = await self.session.execute(statement)
         row = result.scalar().split("_")
         gate_section = row[0] + "_" + row[1] + "_"
         return gate_section
 
-    async def get_row_token(self, patient_id : int):
-        location = await self.get_patient_row(patient_id)
-        statement = select(Visitor.fcm_token).filter(Visitor.id != patient_id).where(Visitor.section_seat.startswith(location))
+    async def get_row_tokens(self, visitor_id: int) -> List[str]:
+        location = await self.get_visitor_row(visitor_id)
+        statement = select(Visitor.fcm_token).filter(
+            Visitor.id != visitor_id
+        ).where(Visitor.section_seat.startswith(location))
         result = await self.session.execute(statement)
-        return result.fetchall()
+        return list(map(lambda row: row[0], result.fetchall()))

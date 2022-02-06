@@ -22,3 +22,6 @@ class Settings(BaseSettings):
     DB_URL: str = f"postgresql+asyncpg://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
 
     FIREBASE_CREDENTIALS: str = os.getenv("FIREBASE_CREDENTIALS")
+    NOTIFICATION_TITLE: str = "EMERGENCY ALERT"
+    DOCTOR_NOTIFICATION_BODY: str = "Heart attack occurred at section {0} seat {1}"
+    ROW_NOTIFICATION_BODY: str = "Make way for the medical staff"

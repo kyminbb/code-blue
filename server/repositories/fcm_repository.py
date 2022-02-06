@@ -1,5 +1,5 @@
 from typing import List
-from typing import Union
+from typing import Optional
 
 import firebase_admin
 from firebase_admin import credentials
@@ -20,13 +20,17 @@ class FCMRepository:
             cred = credentials.Certificate(self.settings.FIREBASE_CREDENTIALS)
             firebase_admin.initialize_app(cred)
 
-    async def send_message(self, client_token: str, data: Union[DoctorMessage]) -> None:
+    async def send_message(self, client_token: str, data: Optional[DoctorMessage] = None) -> None:
         self._initialize()
-        message_data = {k: str(v) for k, v in data.__dict__.items()}
+        message_data = {k: str(v) for k, v in data.__dict__.items()} if data else {}
+        body = self.settings.DOCTOR_NOTIFICATION_BODY.format(
+            data.patient_section,
+            data.patient_seat
+        ) if data else self.settings.ROW_NOTIFICATION_BODY
         message = messaging.Message(
             notification=messaging.Notification(
-                title="EMERGENCY ALERT",
-                body=f"Heart attack occurred at section {data.patient_section} seat {data.patient_seat}"
+                title=self.settings.NOTIFICATION_TITLE,
+                body=body
             ),
             data=message_data,
             token=client_token
@@ -37,13 +41,17 @@ class FCMRepository:
             # TODO: Delete visitor_id from DB
             pass
 
-    async def multicast_message(self, client_tokens: List[str], data: Union[DoctorMessage]) -> None:
+    async def multicast_message(self, client_tokens: List[str], data: Optional[DoctorMessage] = None) -> None:
         self._initialize()
-        message_data = {k: str(v) for k, v in data.__dict__.items()}
+        message_data = {k: str(v) for k, v in data.__dict__.items()} if data else {}
+        body = self.settings.DOCTOR_NOTIFICATION_BODY.format(
+            data.patient_section,
+            data.patient_seat
+        ) if data else self.settings.ROW_NOTIFICATION_BODY
         message = messaging.MulticastMessage(
             notification=messaging.Notification(
-                title="EMERGENCY ALERT",
-                body=f"Heart attack occurred at section {data.patient_section} seat {data.patient_seat}"
+                title=self.settings.NOTIFICATION_TITLE,
+                body=body
             ),
             data=message_data,
             tokens=list(set(client_tokens))

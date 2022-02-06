@@ -52,6 +52,10 @@ class EmergencyService:
         return nearest_doctors
 
     async def handle_emergency(self, emergency: Emergency) -> bool:
+        patient_exists, _ = await asyncio.gather(self.notify_doctors(emergency), self.notify_row(emergency))
+        return patient_exists
+
+    async def notify_doctors(self, emergency: Emergency) -> bool:
         doctors = await self.db_repository.get_doctors()
         if not doctors:
             return True
@@ -79,18 +83,8 @@ class EmergencyService:
                 patient_seat=patient_seat
             )
         )
-
-        # await asyncio.gather(
-        #     *(self.fcm_repository.send_message(
-        #         doctor_token,
-        #         DoctorMessage(
-        #             emergency_code=emergency.emergency_code,
-        #             from_gate=doctor_gate,
-        #             to_gate=patient_gate,
-        #             patient_section=patient.section,
-        #             patient_seat=patient_seat
-        #         )
-        #     ) for doctor_token, doctor_gate in nearest_doctors)
-        # )
-        # TODO: Send messages to nearby visitors to back off
         return True
+
+    async def notify_row(self, emergency: Emergency) -> None:
+        row_tokens = await self.db_repository.get_row_tokens(emergency.visitor_id)
+        await self.fcm_repository.multicast_message(row_tokens)
