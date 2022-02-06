@@ -54,9 +54,13 @@ class VisitorViewModel: ObservableObject {
     }
     
     func fetchRegisterInfo(completion: @escaping ([String: Any]?) -> Void) {
+//        UserDefaults.standard.removeObject(forKey: "visitorId")
         if let visitorId = UserDefaults.standard.value(forKey: "visitorId") as? Int {
             getVisitor(visitorId: visitorId) { resp in
                 if let resp = resp {
+                    if WCSession.default.isReachable {
+                        WCSession.default.sendMessage(["visitorId": visitorId], replyHandler: nil, errorHandler: nil)
+                    }
                     completion(resp)
                 }
                 else {

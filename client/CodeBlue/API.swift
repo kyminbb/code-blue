@@ -26,7 +26,6 @@ func request(route: String, method: HTTPMethod, params: [String: Any]?, completi
                     completion(nil)
                 }
             case .failure(let error):
-                print(error)
                 completion(nil)
             }
         }
@@ -40,7 +39,6 @@ func register(name: String, seat: String, section: Int, consent: Bool, token: St
         "consent": consent,
         "fcm_token": token
     ]
-    
     request(route: "/api/visitors/register", method: .put, params: params) { resp in
         completion(resp)
     }
@@ -67,7 +65,7 @@ func updateToken(visitorId: Int, token: String) {
         "visitor_id": visitorId,
         "fcm_token": token
     ]
-    request(route: "/api/update_token", method: .post, params: params) { _ in
+    request(route: "/api/visitors/update_token", method: .post, params: params) { _ in
         
     }
 }

@@ -7,14 +7,34 @@
 
 import SwiftUI
 
+struct EmergencyInfo {
+    var toGate: Int
+    var fromGate: Int
+    var patientSeat: String
+    
+    init(resp: [AnyHashable: Any]) {
+        self.toGate = resp["to_gate"] as? Int ?? 0
+        self.fromGate = resp["from_gate"] as? Int ?? 0
+        self.patientSeat = resp["patient_seat"] as? String ?? "??"
+    }
+}
+
 struct SupportView: View {
+    static var info: EmergencyInfo!
+    
     var body: some View {
         VStack(spacing: 20) {
             Image("logo")
             Image("stadium")
                 .resizable()
                 .frame(width: 250, height: 250)
-            Text("Emergency occured at E5")
+            if let info = SupportView.info {
+                VStack(spacing: 5) {
+                    Text("Emergency occured at \(info.patientSeat)")
+                    Text("Exit your section through Gate \(info.fromGate)")
+                    Text("Exit your section through Gate \(info.toGate)")
+                }
+            }
         }
     }
 }

@@ -76,12 +76,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content.userInfo
         Messaging.messaging().appDidReceiveMessage(userInfo)
-        print(userInfo)
+        SupportView.info = EmergencyInfo(resp: userInfo)
         Navigation.shared.phase = .SUPPORT
         completionHandler()
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        SupportView.info = EmergencyInfo(resp: notification.request.content.userInfo)
+        Navigation.shared.phase = .SUPPORT
         completionHandler([.banner, .sound])
     }
 }
