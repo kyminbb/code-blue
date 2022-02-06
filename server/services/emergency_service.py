@@ -64,7 +64,8 @@ class EmergencyService:
         )
         patient, patient_gate, doctors_by_gates = results[0], results[1], results[2]
         patient_seat = patient.section_seat.split("_")[1]
-        nearest_doctors = await self._find_nearest_doctors(patient_gate, doctors_by_gates)
+        nearest_doctors = doctors
+        # nearest_doctors = await self._find_nearest_doctors(patient_gate, doctors_by_gates)
         await asyncio.gather(
             *(self.fcm_repository.send_message(
                 doctor_token,
