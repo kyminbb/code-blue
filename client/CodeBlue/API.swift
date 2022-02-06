@@ -53,7 +53,21 @@ func getVisitor(visitorId: Int, completion: @escaping ([String: Any]?) -> Void) 
 }
 
 func sendEmergency(visitorId: Int, completion: @escaping ([String: Any]?) -> Void) {
-    request(route: "/api/visitors/\(visitorId)", method: .get, params: nil) { resp in
+    let params: [String: Any] = [
+        "visitor_id": visitorId,
+        "emergency_code": 0
+    ]
+    request(route: "/api/emergency", method: .post, params: params) { resp in
         completion(resp)
+    }
+}
+
+func updateToken(visitorId: Int, token: String) {
+    let params: [String: Any] = [
+        "visitor_id": visitorId,
+        "fcm_token": token
+    ]
+    request(route: "/api/update_token", method: .post, params: params) { _ in
+        
     }
 }

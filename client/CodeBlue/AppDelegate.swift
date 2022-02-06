@@ -54,6 +54,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        if let visitorId = UserDefaults.standard.value(forKey: "visitorId") as? Int {
+            if let token = fcmToken {
+                updateToken(visitorId: visitorId, token: token)
+            }
+        }
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
