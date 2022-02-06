@@ -4,6 +4,10 @@ CodeBlue is a mobile application and a server that our team (4rsenal) completed 
 in [TartanHacks 2022](https://www.tartanhacks.com). The name came from a hospital emergency code used to describe the 
 critical status of a patient.
 
+## Video 
+
+https://www.youtube.com/watch?v=j6a8mXvD7Z0
+
 ## Inspiration
 
 With recent awareness of heart attack becoming high in the sports scenes, the health of the spectators/crowd has also
