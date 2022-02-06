@@ -52,6 +52,7 @@ struct RegisterView: View {
                 .font(.system(size: 20))
                 .padding(5)
                 .border(Color.black)
+                .keyboardType(.numberPad)
         }
     }
     
