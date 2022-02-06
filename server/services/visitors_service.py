@@ -41,4 +41,5 @@ class VisitorsService:
             update_token_request.visitor_id,
             update_token_request.fcm_token
         )
-        return VisitorResponse(visitor_id=visitor_id)
+        gate = -1 if visitor_id == -1 else await self.db_repository.get_gate(visitor_id)
+        return VisitorResponse(visitor_id=visitor_id, gate=gate)
