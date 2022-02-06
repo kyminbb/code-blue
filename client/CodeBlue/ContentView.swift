@@ -44,7 +44,12 @@ struct ContentView: View {
                 else {
                     navi.isRegistered = false
                 }
-                navi.phase = .VISITOR
+                if let _ = SupportView.info {
+                    navi.phase = .SUPPORT
+                }
+                else {
+                    navi.phase = .VISITOR
+                }
             }
         }
     }
