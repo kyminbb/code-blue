@@ -16,7 +16,8 @@ class VisitorsService:
                 visitor.name,
                 visitor.section,
                 visitor.seat,
-                visitor.consent
+                visitor.consent,
+                visitor.fcm_token,
             )
         return RegisterResponse(visitor_id=visitor_id)
 
@@ -24,5 +25,10 @@ class VisitorsService:
         visitor = await self.visitors_repository.get_visitor(visitor_id)
         if not visitor:
             return None
-        section_seat = visitor.section_seat.split("_")
-        return Visitor(name=visitor.name, section=section_seat[0], seat=section_seat[1], consent=visitor.consent)
+        return Visitor(
+            name=visitor.name,
+            section=visitor.section,
+            seat=visitor.section_seat.split("_")[1],
+            consent=visitor.consent,
+            fcm_token=visitor.fcm_token
+        )
